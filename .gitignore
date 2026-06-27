@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+node_modules/
+.DS_Store
+*.log
+uploads/*
+!uploads/.gitkeep
+backend/app/ml/models/*.pkl
+frontend/dist/

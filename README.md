@@ -1,138 +1,122 @@
-# AI-Powered Academic Recommendation & Learning Assistant
+# 🤖 AI-Powered Academic Recommendation & Learning Assistant
 
-An intelligent academic platform that helps students study efficiently by organizing educational resources and recommending relevant content using Machine Learning clustering.
+> **Helping students find the right study material... because searching through 37 WhatsApp groups isn't an effective learning strategy.**
 
-## Architecture
+An AI-powered academic platform that organizes subjects, recommends related topics using Machine Learning, and provides an AI assistant to help students learn smarter—not harder.
 
-```
-├── frontend/          # React + TypeScript + TailwindCSS + Shadcn UI
-├── backend/           # FastAPI + SQLAlchemy + Scikit-learn + NLTK
-├── docker-compose.yml # PostgreSQL, Backend, Frontend, Ollama
-├── .env.example       # Environment variables template
-├── dataset/           # Academic dataset (user-provided)
-├── uploads/           # Uploaded resources
-└── docs/              # Documentation
-```
+> *Disclaimer:* It can recommend topics. It cannot recommend starting your assignment before the deadline.
 
-## Tech Stack
+---
 
-| Layer      | Technology                                      |
-|------------|------------------------------------------------|
-| Frontend   | React, TypeScript, TailwindCSS, Shadcn UI, React Router, TanStack Query |
-| Backend    | FastAPI, Python, SQLAlchemy, Pydantic          |
-| Database   | PostgreSQL 16                                   |
-| ML Engine  | Scikit-learn (TF-IDF + K-Means), NLTK          |
-| AI         | Ollama (Qwen2.5 3B)                            |
-| Deployment | Docker, Docker Compose                          |
+## ✨ Features
 
-## Quick Start
+* 📚 Organized academic hierarchy (Semester → Subject → Unit → Topic)
+* 🔍 Fast search across topics and learning resources
+* 🧠 ML-powered topic recommendations using TF-IDF + K-Means
+* 🤖 AI study assistant powered by Ollama
+* 📄 Support for notes, videos, and previous year questions
+* 👨‍🏫 Faculty portal for uploading learning resources
+* 🐳 Docker support for one-command deployment
 
-### Prerequisites
-- Docker & Docker Compose
-- Node.js 20+ (for local frontend dev)
-- Python 3.12+ (for local backend dev)
+---
 
-### Using Docker (Recommended)
+## 🛠 Tech Stack
+
+| Frontend           | Backend | Database   | ML                  | AI     |
+| ------------------ | ------- | ---------- | ------------------- | ------ |
+| React + TypeScript | FastAPI | PostgreSQL | Scikit-learn + NLTK | Ollama |
+
+**Translation for non-developers:**
+
+* React makes it look nice.
+* FastAPI makes it fast.
+* PostgreSQL remembers things.
+* Scikit-learn finds similar topics.
+* Ollama answers your questions without saying *"Read the documentation."*
+
+---
+
+## 🚀 Getting Started
 
 ```bash
-# Clone and navigate to project
+git clone <repo-url>
+
 cd 0xCollage
 
-# Copy environment file
 cp .env.example .env
 
-# Start all services
 docker-compose up -d
 
-# Seed the database with sample data
 docker-compose exec backend python -m app.seed.seed_data
-
-# Access the application
-# Frontend: http://localhost:5173
-# Backend API: http://localhost:8000/docs
-# Ollama: http://localhost:11434
 ```
 
-### Local Development
+Then visit:
 
-#### Backend
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('wordnet')"
+* 🌐 Frontend → `http://localhost:5173`
+* 📚 API → `http://localhost:8000/docs`
 
-# Set environment variables
-export DATABASE_URL=postgresql://academic_user:academic_pass@localhost:5432/academic_db
+If everything starts successfully on the first try...
 
-# Run seed data
-python -m app.seed.seed_data
+...don't touch anything.
 
-# Start server
-uvicorn app.main:app --reload --port 8000
+---
+
+## 📖 Documentation
+
+Want the boring (but useful) details?
+
+* 📡 **API Documentation** → [`docs/API.md`](docs/API.md)
+* 🏗️ **Project Structure** → [`docs/STRUCTURE.md`](docs/STRUCTURE.md)
+
+---
+
+## 💡 Why This Project?
+
+Students waste too much time looking for notes, previous year questions, and relevant study resources.
+
+This project brings everything into one place and uses Machine Learning to recommend related topics—so you spend less time searching and more time pretending you'll start studying tomorrow.
+
+---
+
+## 🤝 Contributing
+
+Pull requests are always welcome.
+
+Just remember:
+
+> "99 little bugs in the code,
+> 99 little bugs...
+> Fix one bug,
+> Commit the patch,
+> 127 little bugs in the code."
+
+---
+
+## 📜 License
+
+MIT License.
+
+Use it.
+Fork it.
+Improve it.
+
+Just don't name your notes folder:
+
+```text
+Notes/
+├── Final/
+├── Final_Final/
+├── Final_Final_v2/
+├── FINAL_REAL/
+└── FINAL_REAL_THIS_ONE.pdf
 ```
 
-#### Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-```
+We've all been there.
 
-## API Endpoints
+---
 
-### Academic Data
-| Method | Endpoint                        | Description                    |
-|--------|--------------------------------|--------------------------------|
-| GET    | /api/semesters                  | List all semesters             |
-| GET    | /api/semesters/{id}             | Get semester with subjects     |
-| GET    | /api/subjects                   | List all subjects              |
-| GET    | /api/subjects/{id}              | Get subject with units         |
-| GET    | /api/units/{id}                 | Get unit with topics           |
-| GET    | /api/topics/{id}                | Get topic with resources       |
-| GET    | /api/search?q=                  | Search subjects and topics     |
+⭐ **If this project made your semester even 1% less painful, consider giving it a star.**
 
-### Recommendations & AI
-| Method | Endpoint                        | Description                    |
-|--------|--------------------------------|--------------------------------|
-| GET    | /api/recommendations/{topic_id} | Get similar topics (ML-based) |
-| POST   | /api/ai/chat                    | Chat with AI assistant        |
+It won't improve your GPA...
 
-### Faculty
-| Method | Endpoint                        | Description                    |
-|--------|--------------------------------|--------------------------------|
-| POST   | /api/faculty/resources          | Add new resource (no auth v1) |
-
-## ML Pipeline
-
-```
-Topic Text → Preprocessing (NLTK) → TF-IDF Vectorization → K-Means Clustering → Similar Topics
-```
-
-## Pages
-
-- **Homepage** - Search bar, featured semesters, trending topics
-- **Subjects** - All subjects with semester filter
-- **Subject Detail** - Units overview with topic counts
-- **Unit Page** - Topics list with importance scores
-- **Topic Dashboard** - Resources (notes, videos, PYQs) + AI assistant panel
-- **Search** - Full-text search results
-- **Faculty** - Resource management form
-- **Settings** - Configuration
-
-## Environment Variables
-
-| Variable         | Default                                        | Description          |
-|------------------|------------------------------------------------|----------------------|
-| POSTGRES_USER    | academic_user                                  | Database user        |
-| POSTGRES_PASSWORD| academic_pass                                  | Database password    |
-| POSTGRES_DB      | academic_db                                    | Database name        |
-| DATABASE_URL     | postgresql://academic_user:academic_pass@postgres:5432/academic_db | Connection string |
-| OLLAMA_BASE_URL  | http://ollama:11434                            | Ollama API URL       |
-| OLLAMA_MODEL     | qwen2.5:3b                                     | LLM model            |
-| VITE_API_URL     | http://localhost:8000                           | Backend API URL      |
-
-## License
-
-MIT
+...but it'll make the repository feel appreciated.

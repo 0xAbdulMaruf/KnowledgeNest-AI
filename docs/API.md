@@ -179,7 +179,7 @@ Please behave.
 
 ---
 
-# 📦 Response Format
+#  Response Format
 
 Successful responses generally look like:
 

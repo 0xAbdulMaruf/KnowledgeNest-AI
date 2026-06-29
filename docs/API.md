@@ -255,6 +255,3 @@ Something exploded.
 Please open an issue...
 
 ...after making sure it wasn't your fault first. 😄
-
----
-

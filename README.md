@@ -84,7 +84,7 @@ npm run dev
 ## Project Structure
 
 ```
-0xCollage/
+0xKnowledgeNest-AI/
 ├── backend/
 │   ├── app/
 │   │   ├── api/          # API routes

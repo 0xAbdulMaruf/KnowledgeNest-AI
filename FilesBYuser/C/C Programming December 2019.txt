@@ -1,0 +1,241 @@
+{
+  "exam": {
+    "title": "C Programming",
+    "session": "December 2019",
+    "paper_code": "332(S)",
+    "time_allowed": "3 Hours",
+    "full_marks": 70,
+    "instructions": {
+      "question_1": "Compulsory and to be answered first.",
+      "additional": "This answer is to be made in separate loose script(s). Maximum time allowed is 45 minutes, after which the loose answer scripts will be collected and fresh answer scripts for the remaining part of the question will be provided.",
+      "rest": "Answer any five questions from the rest."
+    }
+  },
+  "question_1": {
+    "part_a": {
+      "title": "Choose the correct answer from the given alternatives (Any ten)",
+      "marks": "1x10",
+      "questions": [
+        {
+          "id": "1A(i)",
+          "question": "A C variable name cannot start with",
+          "options": [
+            "an alphabet",
+            "a number",
+            "a special symbol",
+            "both b and c"
+          ]
+        },
+        {
+          "id": "1A(ii)",
+          "question": "strcat() is defined in which header file?",
+          "options": [
+            "ctype.h",
+            "stdio.h",
+            "string.h",
+            "math.h"
+          ]
+        },
+        {
+          "id": "1A(iii)",
+          "question": "The function that is invoked is known as",
+          "options": [
+            "calling function",
+            "caller function",
+            "called function",
+            "invoking function"
+          ]
+        },
+        {
+          "id": "1A(iv)",
+          "question": "The default storage class of global variable is",
+          "options": [
+            "auto",
+            "static",
+            "register",
+            "extern"
+          ]
+        },
+        {
+          "id": "1A(v)",
+          "question": "&num means",
+          "options": [
+            "address of num",
+            "value of num",
+            "num is a pointer",
+            "either a or b"
+          ]
+        },
+        {
+          "id": "1A(vi)",
+          "question": "A data structure that can store related information of different data types together is",
+          "options": [
+            "array",
+            "string",
+            "structure",
+            "all of these"
+          ]
+        },
+        {
+          "id": "1A(vii)",
+          "question": "A structure member variable is generally accessed using",
+          "options": [
+            "address operator",
+            "dot operator",
+            "comma operator",
+            "ternary operator"
+          ]
+        },
+        {
+          "id": "1A(viii)",
+          "question": "A structure can be placed within another structure is known as",
+          "options": [
+            "nested structure",
+            "self-referential structure",
+            "parallel structure",
+            "pointer to structure"
+          ]
+        },
+        {
+          "id": "1A(ix)",
+          "question": "On a 32-bit system, an integer variable is allocated",
+          "options": [
+            "1 byte",
+            "2 byte",
+            "4 byte",
+            "8 byte"
+          ]
+        },
+        {
+          "id": "1A(x)",
+          "question": "Which variable retains its value in-between function calls?",
+          "options": [
+            "auto",
+            "static",
+            "register",
+            "extern"
+          ]
+        },
+        {
+          "id": "1A(xi)",
+          "question": "C programs are converted into machine language with the help of",
+          "options": [
+            "An interpreter",
+            "A compiler",
+            "An operating system",
+            "None of the above"
+          ]
+        }
+      ]
+    },
+    "part_b": {
+      "title": "What will be the output of the following codes? (Any five)",
+      "marks": "5x2",
+      "questions": [
+        {
+          "id": "1B(i)",
+          "type": "Program Output",
+          "code": "int x=10,y=20,z=5,i; i=x<y<z; printf(\"%d\",i);"
+        },
+        {
+          "id": "1B(ii)",
+          "type": "Program Output",
+          "code": "int i=0; xyz: printf(\"hello\\n\"); i++; if(i<5) goto xyz;"
+        },
+        {
+          "id": "1B(iii)",
+          "type": "Program Output",
+          "code": "#define SQUARE(n) (n)*(n); j=64/SQUARE(4); printf(\"j=%d\",j);"
+        },
+        {
+          "id": "1B(iv)",
+          "type": "Program Output",
+          "code": "int x=3; int *p=&x; printf(\"%d %d\",x,++*p);"
+        },
+        {
+          "id": "1B(v)",
+          "type": "Program Output",
+          "code": "int func(int a){ if(a>1) return(func(--a)+10); else return(0);} int a=2; printf(\"%d\",func(a));"
+        },
+        {
+          "id": "1B(vi)",
+          "type": "Program Output",
+          "code": "int x=11,y=7; x=x^y; y=x^y; x=x^y; printf(\"x=%d, y=%d\",x,y);"
+        },
+        {
+          "id": "1B(vii)",
+          "type": "Program Output",
+          "code": "int i=-1,j=0,k=0,m; m=i++ || j++ && k++; printf(\"%d %d %d %d\",i,j,k,m);"
+        }
+      ]
+    }
+  },
+  "descriptive_questions": [
+    {
+      "number": 2,
+      "marks": "2+4+4",
+      "questions": [
+        "Differentiate between if-else-if and switch statement.",
+        "Write a program to check whether a number is even or odd using switch case.",
+        "Write a program to find maximum among three numbers using conditional operator."
+      ]
+    },
+    {
+      "number": 3,
+      "marks": "(2+2)+6",
+      "questions": [
+        "What are nested loop and infinite loop?",
+        "Write a program to find power of a number using loop."
+      ]
+    },
+    {
+      "number": 4,
+      "marks": "4+6",
+      "questions": [
+        "Differentiate between gets() and scanf().",
+        "Write a program to copy a string to another string without using string.h."
+      ]
+    },
+    {
+      "number": 5,
+      "marks": "6+4",
+      "questions": [
+        "What do you mean by storage class? Explain each storage class supported in C language with features.",
+        "Differentiate between function declaration and function definition."
+      ]
+    },
+    {
+      "number": 6,
+      "marks": "5+5",
+      "questions": [
+        "Write a function isPrime() that returns 1 if the argument passed is a prime number and 0 otherwise.",
+        "Write a program to input and print array elements using pointer."
+      ]
+    },
+    {
+      "number": 7,
+      "marks": "4+6",
+      "questions": [
+        "Can we assign a pointer variable to another pointer variable? Justify your answer with an example.",
+        "With the help of an example explain how an array can be passed to a function."
+      ]
+    },
+    {
+      "number": 8,
+      "marks": "4+6",
+      "questions": [
+        "Differentiate between a structure and an array.",
+        "Is it possible to create an array of structure? Explain with the help of an example."
+      ]
+    },
+    {
+      "number": 9,
+      "marks": "3+3+4",
+      "questions": [
+        "What is preprocessor directive?",
+        "Distinguish between printf() and fprintf().",
+        "What do you mean by sequential access to a file and random access to a file?"
+      ]
+    }
+  ]
+}

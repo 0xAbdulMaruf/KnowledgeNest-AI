@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.database import engine, Base
+from app.database import engine, Base, ensure_resource_soft_delete_columns
 from app.models import Semester, Subject, Unit, Topic, Resource  # noqa: F401
 from app.api import semesters, subjects, units, topics, search, recommendations, faculty, ai
 
@@ -11,6 +11,7 @@ from app.api import semesters, subjects, units, topics, search, recommendations,
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
+    ensure_resource_soft_delete_columns()
     yield
 
 

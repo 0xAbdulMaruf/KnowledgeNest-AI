@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import * as api from '@/services/api'
-import type { ResourceType, CreateResourcePayload } from '@/services/api'
+import type { AIProviderConfig, ResourceType, CreateResourcePayload, FacultyUnlockPayload, UpdateResourcePayload } from '@/services/api'
 
 export function useSemesters() {
   return useQuery({
@@ -113,14 +113,92 @@ export function useCreateResource() {
     mutationFn: (payload: CreateResourcePayload) => api.createResource(payload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['topic'] })
+      queryClient.invalidateQueries({ queryKey: ['faculty', 'resources'] })
+      queryClient.invalidateQueries({ queryKey: ['faculty', 'activities'] })
+    },
+  })
+}
+
+export function useUpdateResource() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: ({ resourceId, payload }: { resourceId: number; payload: UpdateResourcePayload }) =>
+      api.updateResource(resourceId, payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['topic'] })
+      queryClient.invalidateQueries({ queryKey: ['faculty', 'resources'] })
+      queryClient.invalidateQueries({ queryKey: ['faculty', 'activities'] })
+    },
+  })
+}
+
+export function useFacultyUnlock() {
+  return useMutation({
+    mutationFn: (payload: FacultyUnlockPayload) => api.unlockFaculty(payload),
+  })
+}
+
+export function useFacultyResources(enabled: boolean, topicId?: number) {
+  return useQuery({
+    queryKey: ['faculty', 'resources', topicId],
+    queryFn: () => api.getFacultyResources(topicId),
+    enabled,
+  })
+}
+
+export function useFacultyActivities(enabled: boolean) {
+  return useQuery({
+    queryKey: ['faculty', 'activities'],
+    queryFn: api.getFacultyActivities,
+    enabled,
+  })
+}
+
+export function useDeleteResource() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: (resourceId: number) => api.deleteResource(resourceId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['topic'] })
+      queryClient.invalidateQueries({ queryKey: ['faculty', 'resources'] })
+      queryClient.invalidateQueries({ queryKey: ['faculty', 'activities'] })
+    },
+  })
+}
+
+export function useRestoreResource() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: (resourceId: number) => api.restoreResource(resourceId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['topic'] })
+      queryClient.invalidateQueries({ queryKey: ['faculty', 'resources'] })
+      queryClient.invalidateQueries({ queryKey: ['faculty', 'activities'] })
     },
   })
 }
 
 export function useChatWithAI() {
   return useMutation({
-    mutationFn: ({ topicId, question }: { topicId?: number | null; question: string }) =>
-      api.chatWithAI(topicId, question),
+    mutationFn: ({
+      topicId,
+      question,
+      providerConfig,
+      mode,
+      history,
+    }: {
+      topicId?: number | null
+      question: string
+      providerConfig: AIProviderConfig
+      mode?: string
+      history?: { role: 'user' | 'ai'; content: string }[]
+    }) => api.chatWithAIProvider(topicId, question, providerConfig, mode, history || []),
+  })
+}
+
+export function useTestAIConnection() {
+  return useMutation({
+    mutationFn: (providerConfig: AIProviderConfig) => api.testAIConnection(providerConfig),
   })
 }
 

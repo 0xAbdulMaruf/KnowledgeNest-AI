@@ -1,0 +1,1728 @@
+[
+    {
+  "document_metadata": {
+    "date": "DECEMBER 2024",
+    "subject_code": "3110901",
+    "reference_number": "307/5(N)",
+    "subject_name": "ALGORITHMS",
+    "time_allowed": "3 Hours",
+    "full_marks": 60,
+    "instructions": "Answer to Question No. 1 of Group A must be written in the main answer script. In Question No. 1, out of 2 marks for each MCQ, 1 mark is allotted for right answer and 1 mark is allotted for correct explanation of the answer. Answer any Five (05) Questions from Group-B."
+  },
+  "group_a": {
+    "section_title": "GROUP-A",
+    "question_1_instruction": "Choose the correct answer from the given alternatives and explain your answer (any ten) : 2x10=20",
+    "multiple_choice_questions": [
+      {
+        "id": "i",
+        "question": "Which of the following is NOT a characteristic of an algorithm?",
+        "options": [
+          "a. Finiteness",
+          "b. Definiteness",
+          "c. Ambiguity",
+          "d. Input"
+        ],
+        "_ref": "v1"
+      },
+      {
+        "id": "ii",
+        "question": "What does the term \"multiplicity\" refer to in the context of a multiset?",
+        "options": [
+          "a. Number of elements in the multiset",
+          "b. Number of unique elements in the multiset",
+          "c. Number of times an element appears in the multiset",
+          "d. Total number of multisets that can be formed from a given set"
+        ],
+        "_ref": "v2"
+      },
+      {
+        "id": "iii",
+        "question": "What is the time complexity of a Binary Search algorithm in the worst case?",
+        "options": [
+          "a. O(n)",
+          "b. O(log n)",
+          "c. O(n²)",
+          "d. O(1)"
+        ],
+        "_ref": "v3"
+      },
+      {
+        "id": "iv",
+        "question": "Which of the following sorting algorithms is the most efficient in the average case for large datasets?",
+        "options": [
+          "a. Bubble Sort",
+          "b. Quick Sort",
+          "c. Selection Sort",
+          "d. Insertion Sort"
+        ],
+        "_ref": "v4"
+      },
+      {
+        "id": "v",
+        "question": "Which approach is more suitable for problems with overlapping subproblems and optimal substructure?",
+        "options": [
+          "a. Divide and Conquer",
+          "b. Dynamic Programming",
+          "c. Both a and b",
+          "d. Neither"
+        ],
+        "_ref": "v5"
+      },
+      {
+        "id": "vi",
+        "question": "Which algorithm follows the Divide and Conquer approach?",
+        "options": [
+          "a. Bubble Sort",
+          "b. Merge Sort",
+          "c. Selection Sort",
+          "d. Heap Sort"
+        ],
+        "_ref": "v6"
+      },
+      {
+        "id": "vii",
+        "question": "What is the time complexity of Radix Sort?",
+        "options": [
+          "a. O(nk)",
+          "b. O(n²)",
+          "c. O(n log n)",
+          "d. O(n³)"
+        ],
+        "_ref": "v7"
+      },
+      {
+        "id": "viii",
+        "question": "Which of the following hashing collision resolution techniques uses a linked list to resolve collisions?",
+        "options": [
+          "a. Linear Probing",
+          "b. Quadratic Probing",
+          "c. Double Hashing",
+          "d. Chaining"
+        ],
+        "_ref": "v8"
+      },
+      {
+        "id": "ix",
+        "question": "Which of the following algorithms is used to find the shortest path in a graph with negative edge weights?",
+        "options": [
+          "a. Dijkstra's Algorithm",
+          "b. Prim's Algorithm",
+          "c. Bellman-Ford Algorithm",
+          "d. Kruskal's Algorithm"
+        ],
+        "_ref": "v9"
+      },
+      {
+        "id": "x",
+        "question": "What type of approach does Prim's algorithm use to find a minimum spanning tree of a graph?",
+        "options": [
+          "a. Divide and Conquer",
+          "b. Dynamic Programming",
+          "c. Greedy Approach",
+          "d. Backtracking"
+        ],
+        "_ref": "v10"
+      },
+      {
+        "id": "xi",
+        "question": "In the Rabin-Karp algorithm, the hashing technique is used to:",
+        "options": [
+          "a. store the string.",
+          "b. calculate the matching of substrings.",
+          "c. compare every substring.",
+          "d. search for substrings by calculating hash values."
+        ],
+        "_ref": "v11"
+      },
+      {
+        "id": "xii",
+        "question": "What is the worst-case time complexity of the Quick Sort algorithm?",
+        "options": [
+          "a. O(n log n)",
+          "b. O(n²)",
+          "c. O(n)",
+          "d. O(log n)"
+        ],
+        "_ref": "v12"
+      },
+      {
+        "id": "xiii",
+        "question": "What is the number of edges in a tree with n nodes?",
+        "options": [
+          "a. n",
+          "b. n-1",
+          "c. n+1",
+          "d. 2n-1"
+        ],
+        "_ref": "v13"
+      },
+      {
+        "id": "xiv",
+        "question": "Which of the following is the correct time complexity for constructing a Max-Heap?",
+        "options": [
+          "a. O(n log n)",
+          "b. O(n²)",
+          "c. O(n)",
+          "d. O(log n)"
+        ],
+        "_ref": "v14"
+      },
+      {
+        "id": "xv",
+        "question": "The Knuth-Morris-Pratt (KMP) string matching algorithm preprocesses the pattern to:",
+        "options": [
+          "a. avoid rechecking the matched characters.",
+          "b. compare characters from the end.",
+          "c. skip unmatched characters entirely.",
+          "d. directly match the substring."
+        ],
+        "_ref": "v15"
+      }
+    ]
+  },
+  "group_b": {
+    "section_title": "GROUP-B",
+    "questions": [
+      {
+        "id": "2",
+        "parts": [
+          {
+            "sub_id": "a",
+            "text": "Briefly explain key characteristics of every algorithm should have.",
+            "marks": 3,
+            "_ref": "v1"
+          },
+          {
+            "sub_id": "b",
+            "text": "What is asymptotic notation? Explain different types of asymptotic notations.",
+            "marks": "2 + 3",
+            "_ref": "v2"
+          }
+        ],
+        "_ref": "v1"
+      },
+      {
+        "id": "3",
+        "parts": [
+          {
+            "sub_id": "a",
+            "text": "Explain divide and conquer approach.",
+            "marks": 3,
+            "_ref": "v1"
+          },
+          {
+            "sub_id": "b",
+            "text": "Solve the recurrence relation using substitution method: T(n)=2T(n/2) + 1",
+            "marks": 3,
+            "_ref": "v2"
+          },
+          {
+            "sub_id": "c",
+            "text": "Calculate the time complexity of the given pseudo code: for(i=0;i<n;i++) { for(j=0;j<n;j++) { Statement; } }.",
+            "marks": 2,
+            "_ref": "v3"
+          }
+        ],
+        "_ref": "v2"
+      },
+      {
+        "id": "4",
+        "parts": [
+          {
+            "sub_id": "a",
+            "text": "Explain Selection sort using suitable example.",
+            "marks": 4,
+            "_ref": "v1"
+          },
+          {
+            "sub_id": "b",
+            "text": "Compare bubble sort, selection sort and insertion sort.",
+            "marks": 4,
+            "_ref": "v2"
+          }
+        ],
+        "_ref": "v3"
+      },
+      {
+        "id": "5",
+        "parts": [
+          {
+            "sub_id": "a",
+            "text": "Illustrate Quick Sort algorithm on the following sequence 38, 81, 22, 48, 13, 69, 93, 14, 45, 58, 79, 72.",
+            "marks": 4,
+            "_ref": "v1"
+          },
+          {
+            "sub_id": "b",
+            "text": "Explain best case and worst case time complexity of quick sort.",
+            "marks": 4,
+            "_ref": "v2"
+          }
+        ],
+        "_ref": "v4"
+      },
+      {
+        "id": "6",
+        "parts": [
+          {
+            "sub_id": "a",
+            "text": "Write algorithm for binary search.",
+            "marks": 3,
+            "_ref": "v1"
+          },
+          {
+            "sub_id": "b",
+            "text": "What is a collision in hashing? Describe different types collision techniques.",
+            "marks": "2 + 3",
+            "_ref": "v2"
+          }
+        ],
+        "_ref": "v5"
+      },
+      {
+        "id": "7",
+        "parts": [
+          {
+            "sub_id": "a",
+            "text": "What is a Minimum Spanning Tree (MST)?",
+            "marks": 2,
+            "_ref": "v1"
+          },
+          {
+            "sub_id": "b",
+            "text": "Find Minimum Spanning Tree (MST) using Kruskal's algorithm.",
+            "marks": 6,
+            "context": "Graph with nodes 0, 1, 2, 3, 4, 5, 6 and edges with weights 7, 5, 8, 7, 9, 15, 6, 8, 9, 11",
+            "_ref": "v2"
+          }
+        ],
+        "_ref": "v6"
+      },
+      {
+        "id": "8",
+        "parts": [
+          {
+            "sub_id": "a",
+            "text": "Explain DAG using an example.",
+            "marks": 2,
+            "_ref": "v1"
+          },
+          {
+            "sub_id": "b",
+            "text": "Illustrate Floyd Warshall's algorithm taking a suitable example.",
+            "marks": 6,
+            "_ref": "v2"
+          }
+        ],
+        "_ref": "v7"
+      },
+      {
+        "id": "9",
+        "parts": [
+          {
+            "sub_id": "a",
+            "text": "What are tries (prefix trees), and how are they used in storing strings?",
+            "marks": 3,
+            "_ref": "v1"
+          },
+          {
+            "sub_id": "b",
+            "text": "Construct a tree for the set of words: \"bat\", \"ball\", \"doll\", \"dork\", \"do\", \"dorm\", \"send\", \"sense\". Draw the tree and explain how it facilitates efficient search operations.",
+            "marks": 5,
+            "_ref": "v2"
+          }
+        ],
+        "_ref": "v8"
+      },
+      {
+        "id": "10",
+        "parts": [
+          {
+            "sub_id": "a",
+            "text": "Explain the Knuth-Morris-Pratt (KMP) string matching algorithm.",
+            "marks": 3,
+            "_ref": "v1"
+          },
+          {
+            "sub_id": "b",
+            "text": "Given the text T = \"ababcabcabababd\" and the pattern P = \"ababd\", use the KMP algorithm to determine if the pattern exists in the text. Show the construction of the lps (longest proper prefix which is also suffix) array and the step-by-step matching process.",
+            "marks": 5,
+            "_ref": "v2"
+          }
+        ],
+        "_ref": "v9"
+      }
+    ]
+  },
+  "footer_info": {
+    "website": "https://www.wbscteonline.com"
+  }
+},
+
+{
+  "document_info": {
+    "code": "307/5(N)",
+    "date": "JANUARY 2024",
+    "subject": "ALGORITHMS",
+    "time_allowed": "2.5 Hours",
+    "full_marks": 60,
+    "instructions": "Answer to Question No. 1 of Group A must be written in the main answer script. In Question No. 1, out of 2 marks for each MCQ, 1 mark is allotted for right answer and 1 mark is allotted for correct explanation of the answer. Answer any Five (05) Questions from Group-B."
+  },
+  "group_a": {
+    "section_title": "GROUP-A",
+    "question_1": {
+      "instruction": "Choose the correct answer from the given alternatives and explain your answer (any ten): 2x10=20",
+      "multiple_choice_questions": [
+        {
+          "id": "i",
+          "question": "LIFO scheme is used in ________ data structure.",
+          "options": [
+            {
+              "label": "a",
+              "text": "stack",
+              "_ref": "v1"
+            },
+            {
+              "label": "b",
+              "text": "queue",
+              "_ref": "v2"
+            },
+            {
+              "label": "c",
+              "text": "linked list",
+              "_ref": "v3"
+            },
+            {
+              "label": "d",
+              "text": "tree",
+              "_ref": "v4"
+            }
+          ],
+          "_ref": "v1"
+        },
+        {
+          "id": "ii",
+          "question": "Which of the following sorting algorithms has a worst-case time complexity of O(n log n)?",
+          "options": [
+            {
+              "label": "a",
+              "text": "Bubble sort",
+              "_ref": "v1"
+            },
+            {
+              "label": "b",
+              "text": "Merge sort",
+              "_ref": "v2"
+            },
+            {
+              "label": "c",
+              "text": "Selection sort",
+              "_ref": "v3"
+            },
+            {
+              "label": "d",
+              "text": "Insertion sort",
+              "_ref": "v4"
+            }
+          ],
+          "_ref": "v2"
+        },
+        {
+          "id": "iii",
+          "question": "O-notation provides an asymptotic",
+          "options": [
+            {
+              "label": "a",
+              "text": "upper bound",
+              "_ref": "v1"
+            },
+            {
+              "label": "b",
+              "text": "lower bound",
+              "_ref": "v2"
+            },
+            {
+              "label": "c",
+              "text": "light bound",
+              "_ref": "v3"
+            },
+            {
+              "label": "d",
+              "text": "tight bound",
+              "_ref": "v4"
+            }
+          ],
+          "_ref": "v3"
+        },
+        {
+          "id": "iv",
+          "question": "Time complexity of worst case for Linear Search is",
+          "options": [
+            {
+              "label": "a",
+              "text": "O(1)",
+              "_ref": "v1"
+            },
+            {
+              "label": "b",
+              "text": "O(log n)",
+              "_ref": "v2"
+            },
+            {
+              "label": "c",
+              "text": "O(n)",
+              "_ref": "v3"
+            },
+            {
+              "label": "d",
+              "text": "O(n²)",
+              "_ref": "v4"
+            }
+          ],
+          "_ref": "v4"
+        },
+        {
+          "id": "v",
+          "question": "Which of the following algorithm design technique is used in the Merge sort algorithm?",
+          "options": [
+            {
+              "label": "a",
+              "text": "Dynamic programming",
+              "_ref": "v1"
+            },
+            {
+              "label": "b",
+              "text": "Greedy Method",
+              "_ref": "v2"
+            },
+            {
+              "label": "c",
+              "text": "Divide and conquer",
+              "_ref": "v3"
+            },
+            {
+              "label": "d",
+              "text": "Backtracking",
+              "_ref": "v4"
+            }
+          ],
+          "_ref": "v5"
+        },
+        {
+          "id": "vi",
+          "question": "Which of the following is false in the case of a spanning tree of a graph G?",
+          "options": [
+            {
+              "label": "a",
+              "text": "It is tree that spans G",
+              "_ref": "v1"
+            },
+            {
+              "label": "b",
+              "text": "It is a sub-graph of the G",
+              "_ref": "v2"
+            },
+            {
+              "label": "c",
+              "text": "It includes every vertex of the G",
+              "_ref": "v3"
+            },
+            {
+              "label": "d",
+              "text": "It can be either cyclic or acyclic",
+              "_ref": "v4"
+            }
+          ],
+          "_ref": "v6"
+        },
+        {
+          "id": "vii",
+          "question": "Which of the following is true?",
+          "options": [
+            {
+              "label": "a",
+              "text": "Prim's algorithm initializes with a vertex",
+              "_ref": "v1"
+            },
+            {
+              "label": "b",
+              "text": "Prim's algorithm initializes with an edge",
+              "_ref": "v2"
+            },
+            {
+              "label": "c",
+              "text": "Prim's algorithm initializes with a vertex which has smallest edge",
+              "_ref": "v3"
+            },
+            {
+              "label": "d",
+              "text": "Prim's algorithm initializes with a forest",
+              "_ref": "v4"
+            }
+          ],
+          "_ref": "v7"
+        },
+        {
+          "id": "viii",
+          "question": "Topological sort can be applied to which of the following graphs?",
+          "options": [
+            {
+              "label": "a",
+              "text": "Undirected Cyclic Graphs",
+              "_ref": "v1"
+            },
+            {
+              "label": "b",
+              "text": "Directed Cyclic Graphs",
+              "_ref": "v2"
+            },
+            {
+              "label": "c",
+              "text": "Undirected Acyclic Graphs",
+              "_ref": "v3"
+            },
+            {
+              "label": "d",
+              "text": "Directed Acyclic Graphs",
+              "_ref": "v4"
+            }
+          ],
+          "_ref": "v8"
+        },
+        {
+          "id": "ix",
+          "question": "A Circuit that does not repeat vertices is called",
+          "options": [
+            {
+              "label": "a",
+              "text": "cycle",
+              "_ref": "v1"
+            },
+            {
+              "label": "b",
+              "text": "path",
+              "_ref": "v2"
+            },
+            {
+              "label": "c",
+              "text": "tree",
+              "_ref": "v3"
+            },
+            {
+              "label": "d",
+              "text": "directed graph",
+              "_ref": "v4"
+            }
+          ],
+          "_ref": "v9"
+        },
+        {
+          "id": "xi",
+          "question": "What is a hash table?",
+          "options": [
+            {
+              "label": "a",
+              "text": "A structure that maps values to keys",
+              "_ref": "v1"
+            },
+            {
+              "label": "b",
+              "text": "A structure that maps keys to values",
+              "_ref": "v2"
+            },
+            {
+              "label": "c",
+              "text": "A structure used for storage",
+              "_ref": "v3"
+            },
+            {
+              "label": "d",
+              "text": "A structure used to implement stack and queue",
+              "_ref": "v4"
+            }
+          ],
+          "_ref": "v10"
+        },
+        {
+          "id": "xii",
+          "question": "Dijkstra's algorithm is used for finding",
+          "options": [
+            {
+              "label": "a",
+              "text": "minimum spanning tree",
+              "_ref": "v1"
+            },
+            {
+              "label": "b",
+              "text": "shortest path",
+              "_ref": "v2"
+            },
+            {
+              "label": "c",
+              "text": "string matching",
+              "_ref": "v3"
+            },
+            {
+              "label": "c_duplicate",
+              "text": "sorted sequence",
+              "_ref": "v4"
+            }
+          ],
+          "_ref": "v11"
+        },
+        {
+          "id": "xiii_1",
+          "question": "A graph is called a ______ if it is a connected acyclic graph.",
+          "options": [
+            {
+              "label": "a",
+              "text": "cyclic graph",
+              "_ref": "v1"
+            },
+            {
+              "label": "b",
+              "text": "regular graph",
+              "_ref": "v2"
+            },
+            {
+              "label": "c",
+              "text": "tree",
+              "_ref": "v3"
+            },
+            {
+              "label": "d",
+              "text": "forest",
+              "_ref": "v4"
+            }
+          ],
+          "_ref": "v12"
+        },
+        {
+          "id": "xiii_2",
+          "question": "A binary tree is balanced if the difference of height between left and right sub-tree is not more than",
+          "options": [
+            {
+              "label": "a",
+              "text": "0",
+              "_ref": "v1"
+            },
+            {
+              "label": "b",
+              "text": "1",
+              "_ref": "v2"
+            },
+            {
+              "label": "c",
+              "text": "2",
+              "_ref": "v3"
+            },
+            {
+              "label": "d",
+              "text": "3",
+              "_ref": "v4"
+            }
+          ],
+          "_ref": "v13"
+        },
+        {
+          "id": "xiv",
+          "question": "The following numbers are inserted into an empty binary search tree in the given order: 10, 1, 3, 5, 15, 12, 16. What is the number of leaf nodes of the binary search tree?",
+          "options": [
+            {
+              "label": "a",
+              "text": "3",
+              "_ref": "v1"
+            },
+            {
+              "label": "b",
+              "text": "4",
+              "_ref": "v2"
+            },
+            {
+              "label": "c",
+              "text": "5",
+              "_ref": "v3"
+            },
+            {
+              "label": "d",
+              "text": "6",
+              "_ref": "v4"
+            }
+          ],
+          "_ref": "v14"
+        },
+        {
+          "id": "xv",
+          "question": "What is a Rabin and Karp Algorithm?",
+          "options": [
+            {
+              "label": "a",
+              "text": "String Matching Algorithm",
+              "_ref": "v1"
+            },
+            {
+              "label": "b",
+              "text": "Shortest Path Algorithm",
+              "_ref": "v2"
+            },
+            {
+              "label": "c",
+              "text": "Spanning Tree Algorithm",
+              "_ref": "v3"
+            },
+            {
+              "label": "d",
+              "text": "Approximation Algorithm",
+              "_ref": "v4"
+            }
+          ],
+          "_ref": "v15"
+        }
+      ]
+    }
+  },
+  "group_b": {
+    "section_title": "GROUP-B",
+    "instruction": "Answer any Five (05) questions. 8x5",
+    "questions": [
+      {
+        "id": 2,
+        "content": "What is Algorithm? Explain the difference between set and multi-set. Write the pseudo code of PUSH and POP operation.",
+        "marks_distribution": "2+2+4",
+        "_ref": "v1"
+      },
+      {
+        "id": 3,
+        "content": "Write down the selection sort algorithm. Explain the steps of selection sort algorithm using an example. Find the worst-case time complexity of selection sort algorithm.",
+        "marks_distribution": "3+3+2",
+        "_ref": "v2"
+      },
+      {
+        "id": 4,
+        "content": "Write down the Prim's algorithm for finding minimum spanning tree. Explain the steps of Prim's algorithm using an example.",
+        "marks_distribution": "4+4",
+        "_ref": "v3"
+      },
+      {
+        "id": 5,
+        "content": "What is the significance of linear sort algorithm? Explain the limitations of linear sort. Discuss Bucket sort with an example.",
+        "marks_distribution": "2+2+4",
+        "_ref": "v4"
+      },
+      {
+        "id": 6,
+        "content": "Write and explain recursive Binary search algorithm. Is binary search useful for an unsorted array? Find Time complexity of Binary search algorithm.",
+        "marks_distribution": "4+1+3",
+        "_ref": "v5"
+      },
+      {
+        "id": 7,
+        "content": "What is Hashing? Describe the uses of Hash Table and Hash Function. Discuss Chaining method as Collision resolving technique.",
+        "marks_distribution": "2+3+3",
+        "_ref": "v6"
+      },
+      {
+        "id": 8,
+        "content": "Write down Bellman-Ford's Shortest-Path algorithm. Explain Bellman-Ford algorithm using the following graph.",
+        "marks_distribution": "4+4",
+        "graph_description": "A directed graph with nodes A, B, C, D, E, F. Node A has edges to B (weight 6), C (weight 4), and D (weight 5). Node B has an edge to E (weight -1). Node C has an edge to E (weight 3) and an edge to D (weight -2). Node D has an edge to F (weight -1). Node E has an edge to F (weight 3).",
+        "_ref": "v7"
+      },
+      {
+        "id": 9,
+        "content": "Write a pseudocode of Naïve String-Matching Algorithm. Given pattern: 101110, text: 1110101011101100. Find the occurrence of pattern in the text using Naïve String-Matching Algorithm.",
+        "marks_distribution": "4+4",
+        "_ref": "v8"
+      }
+    ]
+  },
+  "footer_info": {
+    "website": "https://www.wbscteonline.com"
+  }
+},
+
+{
+  "document_info": {
+    "reference_number": "307/5(N)",
+    "date": "March 2023",
+    "subject": "ALGORITHMS",
+    "time_allowed": "2.5 Hours",
+    "full_marks": 60,
+    "instructions": "Answer to Question No. 1 of Group A is compulsory and to be answered first. This answer is to be made in separate loose script(s) provided for the purpose. Maximum time allowed is 30 minutes, after which the loose answer scripts will be collected and fresh answer scripts for answering the remaining part of the question will be provided. On early submission of answer scripts of Question No. 1, a student will get the remaining script earlier. Answer any Five (05) Questions from Group B."
+  },
+  "group_a": {
+    "section_title": "Group A",
+    "question_1": {
+      "instruction": "Choose the correct answer from the given alternatives (any twenty):",
+      "marks": "1x20",
+      "multiple_choice_questions": [
+        {
+          "number": "i",
+          "question": "ADT full form",
+          "options": [
+            "a) About Data Type",
+            "b) Abandoned Data Type",
+            "c) Abstract Data Type",
+            "d) Absolute Data Transaction"
+          ],
+          "_ref": "v1"
+        },
+        {
+          "number": "ii",
+          "question": "In a multiset, elements are arranged in an unordered manner, with elements having a multiplicity of ____________?",
+          "options": [
+            "a) One",
+            "b) More than one",
+            "c) Zero",
+            "d) All of the above"
+          ],
+          "_ref": "v2"
+        },
+        {
+          "number": "iii",
+          "question": "Binary Search can be categorized into which of the following?",
+          "options": [
+            "a) Graph algorithm",
+            "b) Divide and conquer",
+            "c) Greedy algorithm",
+            "d) Dynamic programming"
+          ],
+          "_ref": "v3"
+        },
+        {
+          "number": "iv",
+          "question": "What is the time complexity of binary search with iteration?",
+          "options": [
+            "a) O(nlogn)",
+            "b) O(logn)",
+            "c) O(n)",
+            "d) O(n²)"
+          ],
+          "_ref": "v4"
+        },
+        {
+          "number": "v",
+          "question": "Which of the following is/are property/properties of a dynamic programming problem?",
+          "options": [
+            "a) Optimal substructure",
+            "b) Overlapping sub-problems",
+            "c) Greedy approach",
+            "d) Both optimal substructure and overlapping sub-problems"
+          ],
+          "_ref": "v5"
+        },
+        {
+          "number": "vi",
+          "question": "A circuit that does not repeat vertices is called",
+          "options": [
+            "a) a cycle",
+            "b) a path",
+            "c) a tree",
+            "d) a directed graph"
+          ],
+          "_ref": "v6"
+        },
+        {
+          "number": "vii",
+          "question": "What is the time complexity of Kruskal's algorithm (E is the number of edges and V is the number of vertices of input graph)?",
+          "options": [
+            "a) O(log V)",
+            "b) O(E log V)",
+            "c) O(E²)",
+            "d) O(V log E)"
+          ],
+          "_ref": "v7"
+        },
+        {
+          "number": "viii",
+          "question": "Time complexity of insertion sort is",
+          "options": [
+            "a) Linear",
+            "b) Quadratic",
+            "c) Cubic",
+            "d) Exponential"
+          ],
+          "_ref": "v8"
+        },
+        {
+          "number": "ix",
+          "question": "If A = {x, y, z}, number of elements of the power set of A is:",
+          "options": [
+            "a) 6",
+            "b) 8",
+            "c) 10",
+            "d) 12"
+          ],
+          "_ref": "v9"
+        },
+        {
+          "number": "x",
+          "question": "Which option contains two equal sets?",
+          "options": [
+            "a) X = {5, 6} and Y = {6}",
+            "b) X = {5, 6, 8, 9} and Y = {6, 8, 5, 9}",
+            "c) X = {5, 6, 9} and Y = {5, 6}",
+            "d) X = {5, 6} and Y = {5, 6, 3}"
+          ],
+          "_ref": "v10"
+        },
+        {
+          "number": "xi",
+          "question": "Time complexity depends on",
+          "options": [
+            "a) Compile time",
+            "b) Run time",
+            "c) both Compile time and Run time",
+            "d) None of these"
+          ],
+          "_ref": "v11"
+        },
+        {
+          "number": "xii",
+          "question": "Which of the following is a linear data structure?",
+          "options": [
+            "a) Array",
+            "b) AVL Trees",
+            "c) Binary Trees",
+            "d) Graphs"
+          ],
+          "_ref": "v12"
+        },
+        {
+          "number": "xiii",
+          "question": "What is the maximum number of swaps that can be performed in the Selection Sort algorithm?",
+          "options": [
+            "a) n - 1",
+            "b) n",
+            "c) 1",
+            "d) n - 2"
+          ],
+          "_ref": "v13"
+        },
+        {
+          "number": "xiv",
+          "question": "Which of the following has search efficiency of O(1)?",
+          "options": [
+            "a) Tree",
+            "b) Heap",
+            "c) Hash Table",
+            "d) Linked-List"
+          ],
+          "_ref": "v14"
+        },
+        {
+          "number": "xv",
+          "question": "MST full form is:",
+          "options": [
+            "a) Maximum Spanning Tree",
+            "b) Maximum Sub Tree",
+            "c) Minimum Spanning Tree",
+            "d) Minimum Sub Tree"
+          ],
+          "_ref": "v15"
+        },
+        {
+          "number": "xvi",
+          "question": "If the array is already sorted, which of these algorithms will exhibit the best performance",
+          "options": [
+            "a) Merge Sort",
+            "b) Insertion Sort",
+            "c) Quick Sort",
+            "d) Heap Sort"
+          ],
+          "_ref": "v16"
+        },
+        {
+          "number": "xvii",
+          "question": "What is the maximum number of swaps that can be performed in the Bubble Sort algorithm?",
+          "options": [
+            "a) n - 1",
+            "b) n",
+            "c) 1",
+            "d) n*(n - 1)/2"
+          ],
+          "_ref": "v17"
+        },
+        {
+          "number": "xviii",
+          "question": "To main measures of the efficiency of an algorithm are?",
+          "options": [
+            "a) Time and space complexity",
+            "b) Data and space",
+            "c) Processor and memory",
+            "d) Complexity and capacity"
+          ],
+          "_ref": "v18"
+        },
+        {
+          "number": "xix",
+          "question": "If several elements are competing for the same bucket in the hash table, what is it called?",
+          "options": [
+            "a) Diffusion",
+            "b) Replication",
+            "c) Collision",
+            "d) Duplication"
+          ],
+          "_ref": "v19"
+        },
+        {
+          "number": "xx",
+          "question": "Quick Sort algorithm is a",
+          "options": [
+            "a) Dynamic Programming",
+            "b) Computer programming",
+            "c) Divide & Conquer Algorithm",
+            "d) Greedy algorithm"
+          ],
+          "_ref": "v20"
+        },
+        {
+          "number": "xxi",
+          "question": "Name of the data structure uses by recursion is:",
+          "options": [
+            "a) Stack",
+            "b) Queue",
+            "c) Array",
+            "d) Linked list"
+          ],
+          "_ref": "v21"
+        },
+        {
+          "number": "xxii",
+          "question": "DAG full form is:",
+          "options": [
+            "a) Direct Aligned Graph",
+            "b) Direct Acyclic Graph",
+            "c) Defined Aligned Graph",
+            "d) Defined Acyclic Graph"
+          ],
+          "_ref": "v22"
+        },
+        {
+          "number": "xxiii",
+          "question": "Dijkstra's algorithm is known as",
+          "options": [
+            "a) All pair shortest path",
+            "b) All pair longest path",
+            "c) Single Source longest Path",
+            "d) Single Source shortest path"
+          ],
+          "_ref": "v23"
+        },
+        {
+          "number": "xxiv",
+          "question": "Which of the following is true?",
+          "options": [
+            "a) Prim's algorithm initializes with a vertex.",
+            "b) Prim's algorithm initializes with an edge.",
+            "c) Prim's algorithm initializes with a vertex which has smallest edge,",
+            "d) Prim's algorithm initializes with a forest."
+          ],
+          "_ref": "v24"
+        },
+        {
+          "number": "xxv",
+          "question": "Which of the following algorithms are used to find the shortest path from a source node to all other nodes in a weighted graph?",
+          "options": [
+            "a) BFS.",
+            "b) Dijkstra's Algorithm.",
+            "c) Prims Algorithm.",
+            "d) Kruskal's Algorithm."
+          ],
+          "_ref": "v25"
+        }
+      ]
+    }
+  },
+  "group_b": {
+    "section_title": "Group B",
+    "questions": [
+      {
+        "number": 2,
+        "parts": [
+          {
+            "label": "a",
+            "question": "What is Algorithm? Explain Big-Oh (O) asymptotic notation.",
+            "marks": "2+2",
+            "_ref": "v1"
+          },
+          {
+            "label": "b",
+            "question": "What is Time complexity? Why Are Time and Space Complexities important?",
+            "marks": "2+2",
+            "_ref": "v2"
+          }
+        ],
+        "_ref": "v1"
+      },
+      {
+        "number": 3,
+        "parts": [
+          {
+            "label": "a",
+            "question": "Find time complexity of following: i=1; while (i ≤ n) { printf (\"CST\\n\"); i = i * 2; }",
+            "marks": 4,
+            "_ref": "v1"
+          },
+          {
+            "label": "b",
+            "question": "Explain the basic concept of divide and conquer algorithmic model.",
+            "marks": 4,
+            "_ref": "v2"
+          }
+        ],
+        "_ref": "v2"
+      },
+      {
+        "number": 4,
+        "parts": [
+          {
+            "label": "a",
+            "question": "State the conditions when linear search can be considered.",
+            "_ref": "v1"
+          },
+          {
+            "label": "b",
+            "question": "Write an algorithm of binary search. Explain why complexity of binary search is O(log n)?",
+            "_ref": "v2"
+          }
+        ],
+        "_ref": "v3"
+      },
+      {
+        "number": 5,
+        "parts": [
+          {
+            "label": "a",
+            "question": "Explain the signification and advantage of height balancing of binary search tree?",
+            "_ref": "v1"
+          },
+          {
+            "label": "b",
+            "question": "Write a pseudo code of insertion operation in binary search tree.",
+            "_ref": "v2"
+          }
+        ],
+        "_ref": "v4"
+      },
+      {
+        "number": 6,
+        "parts": [
+          {
+            "label": "a",
+            "question": "How does the Prim's algorithm work?",
+            "_ref": "v1"
+          },
+          {
+            "label": "b",
+            "question": "Construct a minimum spanning tree from this weighted graph using Kruskal's algorithm.",
+            "context": "Weighted graph with nodes A, B, C, D, E and edges with weights 1, 3, 4, 5, 7, 10, 2",
+            "_ref": "v2"
+          }
+        ],
+        "_ref": "v5"
+      },
+      {
+        "number": 7,
+        "question": "Explain Merge sort algorithm with suitable example.",
+        "_ref": "v6"
+      },
+      {
+        "number": 8,
+        "parts": [
+          {
+            "label": "a",
+            "question": "What is hashing?",
+            "_ref": "v1"
+          },
+          {
+            "label": "b",
+            "question": "Briefly discuss about different collusion resolution techniques.",
+            "_ref": "v2"
+          }
+        ],
+        "_ref": "v7"
+      },
+      {
+        "number": 9,
+        "parts": [
+          {
+            "label": "a",
+            "question": "Write down Dijkstra's Shortest-Path Algorithm.",
+            "_ref": "v1"
+          },
+          {
+            "label": "b",
+            "question": "Explain it with suitable example.",
+            "_ref": "v2"
+          }
+        ],
+        "_ref": "v8"
+      },
+      {
+        "number": 10,
+        "parts": [
+          {
+            "label": "a",
+            "question": "Write down Rabin-Karp algorithm for string matching.",
+            "_ref": "v1"
+          },
+          {
+            "label": "b",
+            "question": "Compare Rabin Karp and KMP algorithm.",
+            "_ref": "v2"
+          }
+        ],
+        "_ref": "v9"
+      }
+    ]
+  },
+  "footer_info": {
+    "website": "https://www.wbscteonline.com"
+  }
+},
+
+{
+  "document_info": {
+    "document_id": "872",
+    "date": "June 2022",
+    "code": "307/5(N)",
+    "subject": "ALGORITHMS",
+    "time_allowed": "3 Hours",
+    "full_marks": 60,
+    "instructions": "Answer the following questions from Group-A, B & C as directed."
+  },
+  "group_a": {
+    "section_1": {
+      "instruction": "Choose the correct alternative (Any ten)",
+      "marks": "1 x 10=10",
+      "questions": [
+        {
+          "number": "i",
+          "question": "Which of the following is asymptotically smallest?",
+          "options": [
+            "a) n",
+            "b) log n",
+            "c) n log n",
+            "d) 2^n"
+          ],
+          "_ref": "v1"
+        },
+        {
+          "number": "ii",
+          "question": "Which following statement is true?",
+          "options": [
+            "a) All graphs are trees",
+            "b) All trees are graphs",
+            "c) Some trees are graphs",
+            "d) No tree is a graph"
+          ],
+          "_ref": "v2"
+        },
+        {
+          "number": "iii",
+          "question": "Which of the following sorting algorithms is the fastest?",
+          "options": [
+            "a) Merge sort",
+            "b) Quick sort",
+            "c) Insertion sort",
+            "d) Shell sort"
+          ],
+          "_ref": "v3"
+        },
+        {
+          "number": "iv",
+          "question": "The given array is arr = {1, 2, 4, 3}. Bubble sort is used to sort the array elements. How many iterations will be done to sort the array?",
+          "options": [
+            "a) 4",
+            "b) 2",
+            "c) 1",
+            "d) 0"
+          ],
+          "_ref": "v4"
+        },
+        {
+          "number": "v",
+          "question": "Choose the incorrect statement about merge sort from the following",
+          "options": [
+            "a) it is a comparison based sort",
+            "b) it is an adaptive algorithm",
+            "c) it is not an in-place algorithm",
+            "d) it is a stable algorithm"
+          ],
+          "_ref": "v5"
+        },
+        {
+          "number": "vi",
+          "question": "What is a randomized QuickSort?",
+          "options": [
+            "a) The leftmost element is chosen as the pivot",
+            "b) The rightmost element is chosen as the pivot",
+            "c) Any element in the array is chosen as the pivot",
+            "d) A random number is generated which is used as the pivot"
+          ],
+          "_ref": "v6"
+        },
+        {
+          "number": "vii",
+          "question": "Which of the following algorithm implementations is similar to that of an insertion sort?",
+          "options": [
+            "A) Binary heap",
+            "b) Quick sort",
+            "c) Merge sort",
+            "d) Radix sort"
+          ],
+          "_ref": "v7"
+        },
+        {
+          "number": "viii",
+          "question": "Which of the following is true?",
+          "options": [
+            "a) Prim's algorithm initialises with a vertex",
+            "b) Prim's algorithm initialises with an edge",
+            "c) Prim's algorithm initialises with a vertex which has smallest edge",
+            "d) Prim's algorithm initialises with a forest"
+          ],
+          "_ref": "v8"
+        },
+        {
+          "number": "ix",
+          "question": "Given an array arr = {45,77,89,90,94,99,100} and key = 99; what are the mid values(corresponding array elements) in the first and second levels of recursion?",
+          "options": [
+            "a) 90 and 99",
+            "b) 90 and 94",
+            "c) 89 and 99",
+            "d) 89 and 94"
+          ],
+          "_ref": "v9"
+        },
+        {
+          "number": "x",
+          "question": "What is a Rabin and Karp Algorithm?",
+          "options": [
+            "A) String Matching Algorithm",
+            "b) Shortest Path Algorithm",
+            "c) Minimum spanning tree Algorithm",
+            "d) Approximation Algorithm"
+          ],
+          "_ref": "v10"
+        },
+        {
+          "number": "xi",
+          "question": "Worst case is the worst case time complexity of Prim's algorithm if adjacency matrix is used?",
+          "options": [
+            "a) O(log V)",
+            "b) O(V^2)",
+            "c) O(E^2)",
+            "d) O(V log E)"
+          ],
+          "_ref": "v11"
+        },
+        {
+          "number": "xii",
+          "question": "Floyd Warshall Algorithm used to solve the shortest path problem has a time complexity of",
+          "options": [
+            "a) O(V*V)",
+            "b) O(V*V*V)",
+            "c) O(E*V)",
+            "d) O(E*E)"
+          ],
+          "_ref": "v12"
+        }
+      ]
+    },
+    "section_2": {
+      "instruction": "Fill in the blanks (Any ten)",
+      "marks": "1 x 10 = 10",
+      "questions": [
+        {
+          "number": "i",
+          "text": "Running time complexity of heap sort is ____________.",
+          "_ref": "v1"
+        },
+        {
+          "number": "ii",
+          "text": "LIFO scheme is used in ____________ data structure.",
+          "_ref": "v2"
+        },
+        {
+          "number": "iii",
+          "text": "An algorithm is a ____________ to solve a problem",
+          "_ref": "v3"
+        },
+        {
+          "number": "iv",
+          "text": "Element of queue will be deleted from ____________ end",
+          "_ref": "v4"
+        },
+        {
+          "number": "v",
+          "text": "Worst case for linear search is ____________.",
+          "_ref": "v5"
+        },
+        {
+          "number": "vi",
+          "text": "Each node in a binary tree has atmost ____________ child nodes",
+          "_ref": "v6"
+        },
+        {
+          "number": "vii",
+          "text": "O-notation provides an asymptotic ____________.",
+          "_ref": "v7"
+        },
+        {
+          "number": "viii",
+          "text": "Deletion in heap requires ____________ number of arrays.",
+          "_ref": "v8"
+        },
+        {
+          "number": "ix",
+          "text": "Time complexity of insertion sort is ____________.",
+          "_ref": "v9"
+        },
+        {
+          "number": "x",
+          "text": "The process where two rotations are required to balance a tree is called ____________.",
+          "_ref": "v10"
+        },
+        {
+          "number": "xi",
+          "text": "Big O notation derives the ____________ case.",
+          "_ref": "v11"
+        },
+        {
+          "number": "xii",
+          "text": "____________ notation gives the lower bound of the function f(n).",
+          "_ref": "v12"
+        },
+        {
+          "number": "xiii",
+          "text": "Balance factor of AVL tree is ____________.",
+          "_ref": "v13"
+        },
+        {
+          "number": "xiv",
+          "text": "____________ is the formula used in Euclid's algorithm for finding the greatest common divisor of two numbers.",
+          "_ref": "v14"
+        },
+        {
+          "number": "xv",
+          "text": "If algorithm takes O(n2), it is faster for sufficiently larger n than if it had taken ____________.",
+          "_ref": "v15"
+        }
+      ]
+    },
+    "section_3": {
+      "instruction": "Answer the following question (Any ten)",
+      "marks": "1 x 10 = 10",
+      "questions": [
+        {
+          "number": "i",
+          "text": "Write one difference between path and cycle.",
+          "_ref": "v1"
+        },
+        {
+          "number": "ii",
+          "text": "Define insertion sort",
+          "_ref": "v2"
+        },
+        {
+          "number": "iii",
+          "text": "What is another name of height balanced binary search tree.",
+          "_ref": "v3"
+        },
+        {
+          "number": "iv",
+          "text": "What is the Greedy method?",
+          "_ref": "v4"
+        },
+        {
+          "number": "v",
+          "text": "Mention the various types of searching techniques in C.",
+          "_ref": "v5"
+        },
+        {
+          "number": "vi",
+          "text": "What is Linear Time Sorting?",
+          "_ref": "v6"
+        },
+        {
+          "number": "vii",
+          "text": "What is Collision?",
+          "_ref": "v7"
+        },
+        {
+          "number": "viii",
+          "text": "What is advantage of linked list representation of binary trees over arrays?",
+          "_ref": "v8"
+        },
+        {
+          "number": "ix",
+          "text": "What is cut vertex?",
+          "_ref": "v9"
+        },
+        {
+          "number": "x",
+          "text": "What is direct addressing?",
+          "_ref": "v10"
+        },
+        {
+          "number": "xi",
+          "text": "What is data abstraction?",
+          "_ref": "v11"
+        },
+        {
+          "number": "xii",
+          "text": "What is sink in a graph?",
+          "_ref": "v12"
+        },
+        {
+          "number": "xiii",
+          "text": "Define in-degree of a graph.",
+          "_ref": "v13"
+        },
+        {
+          "number": "xiv",
+          "text": "What is pivot in Quick Sort?",
+          "_ref": "v14"
+        }
+      ]
+    }
+  },
+  "group_b": {
+    "section_4": {
+      "instruction": "Answer the questions (Any six)",
+      "marks": "2x6 = 12",
+      "questions": [
+        {
+          "number": "i",
+          "text": "Which is the best searching algorithm and why?",
+          "_ref": "v1"
+        },
+        {
+          "number": "ii",
+          "text": "Describe best case time complexity.",
+          "_ref": "v2"
+        },
+        {
+          "number": "iii",
+          "text": "Define 'Big Theta' Notation",
+          "_ref": "v3"
+        },
+        {
+          "number": "iv",
+          "text": "What do you mean by sorting?",
+          "_ref": "v4"
+        },
+        {
+          "number": "v",
+          "text": "Define Dynamic Programming algorithm.",
+          "_ref": "v5"
+        },
+        {
+          "number": "vi",
+          "text": "Why a sorting technique is called stable?",
+          "_ref": "v6"
+        },
+        {
+          "number": "vii",
+          "text": "Which one is more efficient - Insertion Sort or Merge Sort?",
+          "_ref": "v7"
+        },
+        {
+          "number": "viii",
+          "text": "Write the advantages of height balancing.",
+          "_ref": "v8"
+        },
+        {
+          "number": "ix",
+          "text": "What is Omega Notation & give example?",
+          "_ref": "v9"
+        },
+        {
+          "number": "x",
+          "text": "What is inorder traversal in BST?",
+          "_ref": "v10"
+        },
+        {
+          "number": "xi",
+          "text": "Describe spanning tree with an example.",
+          "_ref": "v11"
+        },
+        {
+          "number": "xii",
+          "text": "What do you mean by space complexity?",
+          "_ref": "v12"
+        }
+      ]
+    }
+  },
+  "group_c": {
+    "section_5": {
+      "instruction": "Answer the question (any one)",
+      "marks": "6x1",
+      "questions": [
+        {
+          "number": "a",
+          "text": "What is an algorithm and what is the Complexity of the Algorithm?",
+          "_ref": "v1"
+        },
+        {
+          "number": "b",
+          "text": "Write an algorithm for the bubble sort method.",
+          "_ref": "v2"
+        },
+        {
+          "number": "c",
+          "text": "Draw and explain the colpitt oscillator. Write down Barkhausen criterion for oscillation.",
+          "_ref": "v3"
+        }
+      ]
+    },
+    "section_6": {
+      "instruction": "Answer the question (any one)",
+      "marks": "6x1",
+      "questions": [
+        {
+          "number": "a",
+          "text": "What is space complexity? Write down the complexity of merge sort.",
+          "_ref": "v1"
+        },
+        {
+          "number": "b",
+          "text": "Write and explain recursive binary search algorithm.",
+          "_ref": "v2"
+        },
+        {
+          "number": "c",
+          "text": "Write Divide and Conquer algorithm with detailed explanation",
+          "_ref": "v3"
+        }
+      ]
+    },
+    "section_7": {
+      "instruction": "Answer the question (any one)",
+      "marks": "6x1",
+      "questions": [
+        {
+          "number": "a",
+          "text": "Explain path, cycle and directed acyclic graph with proper examples.",
+          "_ref": "v1"
+        },
+        {
+          "number": "b",
+          "text": "Explain Directed Acyclic Graphs with Examples",
+          "_ref": "v2"
+        },
+        {
+          "number": "c",
+          "text": "Use Kruskal's algorithm to find out the minimum spanning tree for the graph.",
+          "graph_description": "A weighted graph with vertices A, B, C, D, E. The edges and their weights are: A-B (1), A-C (7), A-D (10), A-E (5), B-C (3), C-D (4), D-E (2).",
+          "_ref": "v3"
+        }
+      ]
+    }
+  }
+}
+
+]

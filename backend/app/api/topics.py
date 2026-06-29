@@ -18,6 +18,8 @@ def get_topic(topic_id: int, db: Session = Depends(get_db)):
     topic_data = TopicDetailResponse.model_validate(topic)
     grouped: dict[str, list] = {}
     for r in topic.resources:
+        if r.deleted_at is not None:
+            continue
         key = r.type.value
         if key not in grouped:
             grouped[key] = []
@@ -43,7 +45,7 @@ def get_topic_resources(
     topic = db.query(Topic).filter(Topic.id == topic_id).first()
     if not topic:
         raise HTTPException(status_code=404, detail="Topic not found")
-    query = db.query(Resource).filter(Resource.topic_id == topic_id)
+    query = db.query(Resource).filter(Resource.topic_id == topic_id, Resource.deleted_at.is_(None))
     if type is not None:
         query = query.filter(Resource.type == type)
     return query.all()

@@ -6,6 +6,23 @@ const api = axios.create({
   timeout: 10000,
 })
 
+const facultySessionKey = 'faculty_session_token'
+
+export const setFacultySessionToken = (token: string | null) => {
+  if (token) {
+    sessionStorage.setItem(facultySessionKey, token)
+    api.defaults.headers.common.Authorization = `Bearer ${token}`
+    return
+  }
+  sessionStorage.removeItem(facultySessionKey)
+  delete api.defaults.headers.common.Authorization
+}
+
+const initialFacultyToken = sessionStorage.getItem(facultySessionKey)
+if (initialFacultyToken) {
+  api.defaults.headers.common.Authorization = `Bearer ${initialFacultyToken}`
+}
+
 api.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -66,6 +83,26 @@ export interface Resource {
   url?: string
   content?: string
   metadata_?: Record<string, any>
+  deleted_at?: string | null
+  deleted_by?: string | null
+}
+
+export interface FacultyActivity {
+  id: number
+  teacher_name: string
+  action: 'create' | 'update' | 'delete' | 'restore'
+  resource_id: number
+  created_at: string
+}
+
+export interface FacultyUnlockPayload {
+  teacher_name: string
+  password: string
+}
+
+export interface FacultyUnlockResponse {
+  access_token: string
+  teacher_name: string
 }
 
 export interface SearchResult {
@@ -101,6 +138,16 @@ export interface AIResponse {
   answer: string
   topic_name: string
   mode: string
+  provider: string
+}
+
+export type AIProvider = 'local' | 'openai' | 'anthropic' | 'mimo'
+
+export interface AIProviderConfig {
+  provider: AIProvider
+  baseUrl?: string
+  apiKey?: string
+  model?: string
 }
 
 export interface CreateResourcePayload {
@@ -110,6 +157,19 @@ export interface CreateResourcePayload {
   url?: string
   content?: string
   tags?: string[]
+}
+
+export interface UpdateResourcePayload {
+  topic_id?: number
+  type?: ResourceType
+  title?: string
+  url?: string
+  content?: string
+  metadata_?: Record<string, any>
+}
+
+export interface FacultyResourceQuery {
+  topicId?: number
 }
 
 export const getSemesters = async (): Promise<Semester[]> => {
@@ -162,6 +222,21 @@ export const getTopicResources = async (id: number, type?: ResourceType): Promis
   return data
 }
 
+export const unlockFaculty = async (payload: FacultyUnlockPayload): Promise<FacultyUnlockResponse> => {
+  const { data } = await api.post('/faculty/unlock', payload)
+  return data
+}
+
+export const getFacultyResources = async (topicId?: number): Promise<Resource[]> => {
+  const { data } = await api.get('/faculty/resources', { params: topicId ? { topic_id: topicId } : {} })
+  return data
+}
+
+export const getFacultyActivities = async (): Promise<FacultyActivity[]> => {
+  const { data } = await api.get('/faculty/activities')
+  return data
+}
+
 export const searchTopics = async (q: string, limit?: number): Promise<SearchResult> => {
   const { data } = await api.get('/search/', { params: { q, limit: limit || 20 } })
   return data
@@ -177,12 +252,74 @@ export const createResource = async (payload: CreateResourcePayload): Promise<Re
   return data
 }
 
+export const updateResource = async (resourceId: number, payload: UpdateResourcePayload): Promise<Resource> => {
+  const { data } = await api.put(`/faculty/resources/${resourceId}`, payload)
+  return data
+}
+
+export const deleteResource = async (resourceId: number): Promise<Resource> => {
+  const { data } = await api.delete(`/faculty/resources/${resourceId}`)
+  return data
+}
+
+export const restoreResource = async (resourceId: number): Promise<Resource> => {
+  const { data } = await api.post(`/faculty/resources/${resourceId}/restore`)
+  return data
+}
+
 export const chatWithAI = async (topicId: number | null | undefined, question: string, mode?: string): Promise<AIResponse> => {
-  const { data } = await api.post('/ai/chat', {
-    topic_id: topicId ?? null,
-    question,
-    mode: mode || 'answer_question',
-  })
+  const { data } = await api.post(
+    '/ai/chat',
+    {
+      topic_id: topicId ?? null,
+      question,
+      mode: mode || 'answer_question',
+      provider: 'local',
+    },
+    { timeout: 120000 }
+  )
+  return data
+}
+
+export const chatWithAIProvider = async (
+  topicId: number | null | undefined,
+  question: string,
+  providerConfig: AIProviderConfig,
+  mode?: string,
+  history: { role: 'user' | 'ai'; content: string }[] = []
+): Promise<AIResponse> => {
+  const { data } = await api.post(
+    '/ai/chat',
+    {
+      topic_id: topicId ?? null,
+      question,
+      mode: mode || 'answer_question',
+      history: history.map((message) => ({ role: message.role === 'ai' ? 'assistant' : 'user', content: message.content })),
+      provider: providerConfig.provider,
+      base_url: providerConfig.baseUrl,
+      api_key: providerConfig.apiKey,
+      model: providerConfig.model,
+    },
+    { timeout: 120000 }
+  )
+  return data
+}
+
+export const testAIConnection = async (providerConfig: AIProviderConfig): Promise<{ ok: boolean; provider: string; message: string }> => {
+  const { data } = await api.post(
+    '/ai/test-connection',
+    {
+      topic_id: null,
+      question: 'Ping',
+      mode: 'answer_question',
+      provider: providerConfig.provider,
+      base_url: providerConfig.baseUrl,
+      api_key: providerConfig.apiKey,
+      model: providerConfig.model,
+      history: [],
+    },
+    { timeout: 45000 }
+  )
   return data
 }
 

@@ -1,0 +1,331 @@
+{
+  "exam": {
+    "title": "Computer Programming in C",
+    "session": "March 2023",
+    "paper_code": "307/1(N)",
+    "time_allowed": "2.5 Hours",
+    "full_marks": 60,
+    "instructions": {
+      "question_1": "Question No. 1 of Group A is compulsory and must be answered first.",
+      "special_note": "Answer is to be made in separate loose script(s). Maximum time allowed is 30 minutes, after which the loose answer scripts will be collected and fresh answer scripts for the remaining part will be provided.",
+      "group_b": "Answer any Five (05) Questions from Group B."
+    }
+  },
+  "group_a": {
+    "title": "Choose the correct answer from the given alternatives (any twenty)",
+    "marks": "1x20",
+    "questions": [
+      {
+        "id": "1(i)",
+        "question": "Which is the correct way to declare a pointer?",
+        "options": [
+          "int_ptr x",
+          "int *ptr",
+          "*int ptr",
+          "none"
+        ]
+      },
+      {
+        "id": "1(ii)",
+        "question": "What is the size of the int data type (in bytes) in C?",
+        "options": ["4", "8", "2", "1"]
+      },
+      {
+        "id": "1(iii)",
+        "question": "How is an array initialized in C language?",
+        "options": [
+          "int a[3]={1,2,3};",
+          "int a={1,2,3};",
+          "int a[]=new int[3];",
+          "int a(3)=[1,2,3];"
+        ]
+      },
+      {
+        "id": "1(iv)",
+        "question": "A function ____.",
+        "options": [
+          "may or may not need input data",
+          "may or may not return a value",
+          "Both a and b",
+          "None of these"
+        ]
+      },
+      {
+        "id": "1(v)",
+        "question": "How will you print \\n on the screen?",
+        "options": [
+          "printf(\"\\n\")",
+          "echo \"\\n\"",
+          "printf('\\n')",
+          "printf(\"\\\\n\")"
+        ]
+      },
+      {
+        "id": "1(vi)",
+        "question": "If p is an integer pointer with value 1000, what will be the value of p + 5?",
+        "options": ["1020", "1005", "1004", "1010"]
+      },
+      {
+        "id": "1(vii)",
+        "question": "Which of the following are not standard header files in C?",
+        "options": [
+          "stdio.h",
+          "stdlib.h",
+          "conio.h",
+          "None of the above"
+        ]
+      },
+      {
+        "id": "1(viii)",
+        "question": "Output of code that sums array {1,2,3,4} and prints sum.",
+        "options": ["1", "4", "20", "10"]
+      },
+      {
+        "id": "1(ix)",
+        "question": "Output of: int sum = 2 + 4 / 2 + 6 * 2;",
+        "options": ["2", "15", "16", "18"]
+      },
+      {
+        "id": "1(x)",
+        "question": "Which of the following is an exit controlled loop?",
+        "options": [
+          "while loop",
+          "for loop",
+          "do-while loop",
+          "None of the above"
+        ]
+      },
+      {
+        "id": "1(xi)",
+        "question": "Which data structure is used to handle recursion in C?",
+        "options": [
+          "Stack",
+          "Queue",
+          "Deque",
+          "Tree"
+        ]
+      },
+      {
+        "id": "1(xii)",
+        "question": "Which of the following is not a storage class specifier in C?",
+        "options": [
+          "volatile",
+          "extern",
+          "typedef",
+          "static"
+        ]
+      },
+      {
+        "id": "1(xiii)",
+        "question": "Who is the father of C Language?",
+        "options": [
+          "Steve Jobs",
+          "James Gosling",
+          "Dennis Ritchie",
+          "Rasmus Lerdorf"
+        ]
+      },
+      {
+        "id": "1(xiv)",
+        "question": "Which of the following is not a valid C variable name?",
+        "options": [
+          "int number",
+          "float rate",
+          "int variable_count",
+          "int $main"
+        ]
+      },
+      {
+        "id": "1(xv)",
+        "question": "All keywords in C are in ____.",
+        "options": [
+          "LowerCase letters",
+          "UpperCase letters",
+          "CamelCase letters",
+          "None of the mentioned"
+        ]
+      },
+      {
+        "id": "1(xvi)",
+        "question": "Which of the following cannot be a variable name in C?",
+        "options": [
+          "volatile",
+          "true",
+          "friend",
+          "export"
+        ]
+      },
+      {
+        "id": "1(xvii)",
+        "question": "The C preprocessors are specified with ____ symbol.",
+        "options": [
+          "#",
+          "$",
+          "\"",
+          "&"
+        ]
+      },
+      {
+        "id": "1(xviii)",
+        "question": "If the function returns no value then it is called ____.",
+        "options": [
+          "Data type function",
+          "Calling function",
+          "Main function",
+          "Void function"
+        ]
+      },
+      {
+        "id": "1(xix)",
+        "question": "In C compiler there are ____ keywords.",
+        "options": [
+          "30 keywords",
+          "32 keywords",
+          "31 keywords",
+          "37 keywords"
+        ]
+      },
+      {
+        "id": "1(xx)",
+        "question": "&& is a/an ____ operator.",
+        "options": [
+          "arithmetic",
+          "logical",
+          "Uninor",
+          "Bitwise AND"
+        ]
+      },
+      {
+        "id": "1(xxi)",
+        "question": "The continue statement cannot be used with ____.",
+        "options": [
+          "for",
+          "switch",
+          "while",
+          "all of these"
+        ]
+      },
+      {
+        "id": "1(xxii)",
+        "question": "Compiler converts the .c file into ____.",
+        "options": [
+          "class file",
+          "obj file",
+          "lib file",
+          "batch file"
+        ]
+      },
+      {
+        "id": "1(xxiii)",
+        "question": "The keyword used to transfer control from a function back to the calling function is ____.",
+        "options": [
+          "switch",
+          "goto",
+          "go back",
+          "return"
+        ]
+      },
+      {
+        "id": "1(xxiv)",
+        "question": "Output of: int a=5,b; b=a++; printf(\"%d %d\",a,b);",
+        "options": [
+          "6 5",
+          "6 6",
+          "5 5",
+          "5 6"
+        ]
+      },
+      {
+        "id": "1(xxv)",
+        "question": "If x=-5 and y=3 then the value of x%y is",
+        "options": [
+          "-2",
+          "2",
+          "1",
+          "None of these"
+        ]
+      }
+    ]
+  },
+  "group_b": {
+    "answer_any": 5,
+    "questions": [
+      {
+        "number": 2,
+        "marks": "4+4",
+        "parts": [
+          "Write a program in C to find the GCD (Greatest Common Divisor) of two numbers.",
+          "Write a program in C to check whether a number is divisible by 5 and 11 or not."
+        ]
+      },
+      {
+        "number": 3,
+        "marks": "3+5",
+        "parts": [
+          "Differentiate between for and while loop using suitable example.",
+          "Write a program in C to input marks of five subjects (C_Prog, Data_Struct, Algorithms, Python, Comp_Syst_Organization). Calculate percentage and grade using the specified grading scheme."
+        ]
+      },
+      {
+        "number": 4,
+        "marks": "3+5",
+        "parts": [
+          "What is the use of goto statement? Give suitable example.",
+          "Print the given number pattern using nested loops:\n5\n4 5\n3 4 5\n2 3 4 5\n1 2 3 4 5"
+        ]
+      },
+      {
+        "number": 5,
+        "marks": "5+(1+2)",
+        "parts": [
+          "Write a program in C to check whether a given matrix is an identity matrix.",
+          "What is an array?",
+          "State advantages of an array."
+        ]
+      },
+      {
+        "number": 6,
+        "marks": "4+4",
+        "parts": [
+          "Discuss various storage classes used in C.",
+          "Differentiate between call by value and call by address."
+        ]
+      },
+      {
+        "number": 7,
+        "marks": "3+5",
+        "parts": [
+          "Explain the following string operations in C: strcmp(), strcat().",
+          "Write a C program to convert lowercase string to uppercase and vice versa without using string.h."
+        ]
+      },
+      {
+        "number": 8,
+        "marks": "5+(1+2)",
+        "parts": [
+          "Write a program in C to add two numbers using pointers and function.",
+          "What is pointer?",
+          "State advantages of using pointer in C."
+        ]
+      },
+      {
+        "number": 9,
+        "marks": "3+5",
+        "parts": [
+          "Write a program in C to find ASCII value of a character.",
+          "Write a program in C to find all prime numbers between a given interval using functions."
+        ]
+      },
+      {
+        "number": 10,
+        "marks": "2+2+2+2",
+        "parts": [
+          "Explain with example malloc().",
+          "Explain with example calloc().",
+          "Explain with example realloc().",
+          "Explain with example free()."
+        ]
+      }
+    ]
+  }
+}

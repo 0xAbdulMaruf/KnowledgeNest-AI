@@ -2,18 +2,16 @@ import json
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 from app.database import get_db
 from app.models.topic import Topic
-from app.llm.ollama_client import OllamaClient
+from app.llm.provider_client import AIProviderClient
 from app.llm.context_builder import build_context
 from app.llm.prompts import PROMPT_TEMPLATES
 
 router = APIRouter(prefix="/api/ai", tags=["ai"])
-
-ollama_client = OllamaClient()
 
 
 class ChatMessage(BaseModel):
@@ -25,13 +23,24 @@ class ChatRequest(BaseModel):
     topic_id: Optional[int] = None
     question: str
     mode: str = "answer_question"
-    history: list[ChatMessage] = []
+    history: list[ChatMessage] = Field(default_factory=list)
+    provider: str = "local"
+    base_url: Optional[str] = None
+    api_key: Optional[str] = None
+    model: Optional[str] = None
 
 
 class ChatResponse(BaseModel):
     answer: str
     topic_name: str
     mode: str
+    provider: str
+
+
+class ConnectionTestResponse(BaseModel):
+    ok: bool
+    provider: str
+    message: str
 
 
 def build_conversation_context(history: list[ChatMessage], max_messages: int = 5) -> str:
@@ -46,6 +55,15 @@ def build_conversation_context(history: list[ChatMessage], max_messages: int = 5
         context_parts.append(f"{role}: {msg.content}")
     
     return "\n".join(context_parts)
+
+
+def build_ai_client(request: ChatRequest) -> AIProviderClient:
+    return AIProviderClient(
+        provider=request.provider or "local",
+        base_url=request.base_url,
+        api_key=request.api_key,
+        model=request.model,
+    )
 
 
 @router.post("/chat", response_model=ChatResponse)
@@ -88,13 +106,14 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
     )
     system = template_config["system"]
 
-    try:
-        answer = await ollama_client.generate(prompt=prompt, system=system)
-    except Exception as e:
-        # If Ollama is not available, provide a helpful fallback
-        answer = f"I apologize, but I'm currently unable to connect to the AI service. Please try again later or check if Ollama is running.\n\nError: {str(e)}"
+    client = build_ai_client(request)
 
-    return ChatResponse(answer=answer, topic_name=topic_name, mode=request.mode)
+    try:
+        answer = await client.generate(prompt=prompt, system=system)
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"AI provider request failed: {str(e)}") from e
+
+    return ChatResponse(answer=answer, topic_name=topic_name, mode=request.mode, provider=request.provider or "local")
 
 
 @router.post("/chat/stream")
@@ -133,12 +152,24 @@ async def chat_stream(request: ChatRequest, db: Session = Depends(get_db)):
     )
     system = template_config["system"]
 
+    client = build_ai_client(request)
+
     async def generate():
         try:
-            async for chunk in ollama_client.generate_stream(prompt=prompt, system=system):
+            async for chunk in client.generate_stream(prompt=prompt, system=system):
                 yield f"data: {json.dumps({'chunk': chunk, 'done': False})}\n\n"
             yield f"data: {json.dumps({'chunk': '', 'done': True})}\n\n"
         except Exception as e:
             yield f"data: {json.dumps({'error': str(e), 'done': True})}\n\n"
 
     return StreamingResponse(generate(), media_type="text/event-stream")
+
+
+@router.post("/test-connection", response_model=ConnectionTestResponse)
+async def test_connection(request: ChatRequest):
+    client = build_ai_client(request)
+    try:
+        await client.test_connection()
+        return ConnectionTestResponse(ok=True, provider=request.provider or "local", message="Connection successful")
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Connection test failed: {str(e)}") from e

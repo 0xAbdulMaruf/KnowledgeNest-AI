@@ -22,7 +22,9 @@ const typeLabels: Record<string, string> = {
 }
 
 export default function ResourceList({ resources }: ResourceListProps) {
-  if (!resources || resources.length === 0) {
+  const visibleResources = (resources || []).filter((resource) => !resource.deleted_at)
+
+  if (visibleResources.length === 0) {
     return (
       <div className="border border-[var(--border)] p-8 text-center">
         <p className="text-sm text-[var(--muted)]">No resources available.</p>
@@ -30,7 +32,7 @@ export default function ResourceList({ resources }: ResourceListProps) {
     )
   }
 
-  const grouped = resources.reduce((acc, resource) => {
+  const grouped = visibleResources.reduce((acc, resource) => {
     if (!acc[resource.type]) acc[resource.type] = []
     acc[resource.type].push(resource)
     return acc

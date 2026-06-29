@@ -1,0 +1,248 @@
+{
+  "exam": {
+    "title": "Computer Programming in C",
+    "session": "June 2022",
+    "paper_code": "307/1(N)",
+    "paper_number": "895",
+    "time_allowed": "3 Hours",
+    "full_marks": 60,
+    "instructions": "Answer the following questions from Group-A, B & C as directed."
+  },
+  "group_a": {
+    "section_1": {
+      "title": "Choose the correct alternative (Any ten)",
+      "marks": "1x10=10",
+      "questions": [
+        {
+          "id": "1(i)",
+          "question": "C is often called a",
+          "options": [
+            "Object oriented language",
+            "High level language",
+            "Assembly language",
+            "Machine level language"
+          ]
+        },
+        {
+          "id": "1(ii)",
+          "question": "Which operator has the lowest priority?",
+          "options": ["++", "%", "+", "||"]
+        },
+        {
+          "id": "1(iii)",
+          "question": "Which escape character can be used to begin a new line in C?",
+          "options": ["\\a", "\\b", "\\m", "\\n"]
+        },
+        {
+          "id": "1(iv)",
+          "question": "Which is false?",
+          "options": [
+            "A variable defined once can be defined again with different scope",
+            "A single variable cannot be defined with two different types in the same scope",
+            "A variable must be declared and defined at the same time",
+            "A variable refers to a location in memory"
+          ]
+        },
+        {
+          "id": "1(v)",
+          "question": "The function strcpy(s1,s2) call means",
+          "options": [
+            "copies s1 string into s2",
+            "copies s2 string into s1",
+            "copies both s1 and s2",
+            "None of these"
+          ]
+        },
+        {
+          "id": "1(vi)",
+          "question": "File manipulation functions in C available in header file",
+          "options": [
+            "streams.h",
+            "stdio.h",
+            "stdlib.h",
+            "files.h"
+          ]
+        },
+        {
+          "id": "1(vii)",
+          "question": "What is the limit for number of functions in a C program?",
+          "options": [
+            "16",
+            "31",
+            "32",
+            "No Limit"
+          ]
+        },
+        {
+          "id": "1(viii)",
+          "question": "Address stored in the pointer variable is of type",
+          "options": [
+            "Integer",
+            "Float",
+            "Array",
+            "Character"
+          ]
+        },
+        {
+          "id": "1(ix)",
+          "question": "Output of: int i=-5; int k=i%4; printf(\"%d\",k);",
+          "options": [
+            "Compile time error",
+            "-1",
+            "1",
+            "None"
+          ]
+        },
+        {
+          "id": "1(x)",
+          "question": "How many times will the loop execute for(j=1; j<=10; j=j-1)?",
+          "options": [
+            "forever",
+            "never",
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "1(xi)",
+          "question": "Output of program using r=y%x where y is float and x is int",
+          "options": [
+            "1",
+            "0",
+            "2",
+            "Compile error"
+          ]
+        },
+        {
+          "id": "1(xii)",
+          "question": "The machine registers are sometimes called",
+          "options": [
+            "local variables",
+            "global variables",
+            "accumulators",
+            "static variables"
+          ]
+        },
+        {
+          "id": "1(xiii)",
+          "question": "The value of -17 % -5 is",
+          "options": [
+            "3.4",
+            "3",
+            "-3",
+            "None"
+          ]
+        },
+        {
+          "id": "1(xiv)",
+          "question": "x=5; y=x++; The values of x and y will be",
+          "options": [
+            "x=5,y=6",
+            "y=5,x=6",
+            "x=5,y=5",
+            "x=6,y=6"
+          ]
+        },
+        {
+          "id": "1(xv)",
+          "question": "Which is valid C expression?",
+          "options": [
+            "int my_num=100,000",
+            "int my_num=100000",
+            "int my num=1000",
+            "int $my_num=10000"
+          ]
+        }
+      ]
+    },
+    "section_2": {
+      "title": "Fill in the blanks (Any ten)",
+      "marks": "1x10=10",
+      "questions": [
+        "Long int in 32-bit compiler occupies ____ bytes in main memory.",
+        "The C language consists of ____ number of keywords.",
+        "Each string is terminated with a ____ character.",
+        "scanf() is a predefined function in ____ header file.",
+        "The ____ is equivalent to a=a-1.",
+        "____ is unconditional control structure in C.",
+        "The EOF is equivalent to ____.",
+        "If the function returns no value then it is called ____.",
+        "The union holds ____.",
+        "By default a variable is assigned with ____ in static storage class.",
+        "Array subscripts in C always start at ____.",
+        "The run time library is collection of ____ files.",
+        "The operator '--' is known as ____ operator.",
+        "If a is an integer variable, a=11/2 will store ____.",
+        "The C language was originally developed from ____ language."
+      ]
+    },
+    "section_3": {
+      "title": "Answer the following question (Any ten)",
+      "marks": "1x10=10",
+      "questions": [
+        "What is keywords?",
+        "What is prototype declaration of a function?",
+        "What do you mean by library function in C program?",
+        "What do you mean by debugging?",
+        "What is the difference between declaring a header file with <> and \"\" ?",
+        "What is the use of a '\\0' character?",
+        "What is a syntax error?",
+        "What is token?",
+        "Write the difference between = and == in C programming.",
+        "What is global variable?",
+        "What is malloc()?",
+        "What is typecasting?",
+        "What is the job of Assembler in C programming?",
+        "What are macros?"
+      ]
+    }
+  },
+  "group_b": {
+    "title": "Answer the questions (Any six)",
+    "marks": "2x6=12",
+    "questions": [
+      "What is Bit wise operation in C?",
+      "What is header file?",
+      "Write down the advantage of the Structured program.",
+      "State the types of User-Defined Functions.",
+      "What is the difference between do-while and while loop?",
+      "Evaluate c=a+++--b-a+++b where a=8, b=4.",
+      "Convert (167) base 10 to binary.",
+      "Explain sizeof operator with example.",
+      "Write the differences between Compiler and Interpreter.",
+      "Name the types of Arrays.",
+      "What is looping in C?",
+      "Differentiate Source Codes from Object Codes."
+    ]
+  },
+  "group_c": {
+    "title": "Answer the question (Any one)",
+    "marks": "6x1",
+    "questions": [
+      {
+        "number": 5,
+        "options": [
+          "What do you mean by associativity of an operator? Explain break and continue statement with an example.",
+          "Write a program to calculate GCD of two numbers. Why goto statement should be avoided in C?",
+          "What do you mean by nested loop structure? Write a program in C to find the sum of the series 1+(1+2)+(1+2+3)+... up to n terms."
+        ]
+      },
+      {
+        "number": 6,
+        "options": [
+          "Discuss with programming examples the different types of String Handling Function in C.",
+          "Discuss different Storage Class with example.",
+          "Write a C program to find reverse of a string."
+        ]
+      },
+      {
+        "number": 7,
+        "options": [
+          "What do you mean by a pointer to a function? Write a C program to access a one dimensional array using pointer.",
+          "Write a recursive function to obtain the sum of first 25 natural numbers. Write a program to find whether a year is leap year or not.",
+          "Write a C program for reading and writing integer values using Dynamic Memory Allocation."
+        ]
+      }
+    ]
+  }
+}

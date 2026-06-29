@@ -1,6 +1,6 @@
 import enum
 
-from sqlalchemy import Column, Integer, String, ForeignKey, Text, Enum, JSON
+from sqlalchemy import Column, Integer, String, ForeignKey, Text, Enum, JSON, DateTime
 from sqlalchemy.orm import relationship
 
 from app.database import Base
@@ -31,5 +31,7 @@ class Resource(Base):
     url = Column(String, default="")
     content = Column(Text, default="")
     metadata_ = Column("metadata", JSON, default=dict)
+    deleted_at = Column(DateTime, nullable=True)
+    deleted_by = Column(String, nullable=True)
 
     topic = relationship("Topic", back_populates="resources")

@@ -47,8 +47,8 @@ export default function AIAssistantLauncher() {
             onClick={() => setIsOpen(false)}
           />
 
-          <div className="absolute bottom-0 right-0 left-0 mx-auto flex h-[calc(100vh-4.5rem)] w-full max-w-[calc(100vw-1rem)] items-end justify-end p-2 sm:bottom-6 sm:left-auto sm:right-6 sm:h-[min(78vh,760px)] sm:max-w-[420px] sm:p-0">
-            <div className="relative flex h-full w-full flex-col overflow-hidden border border-[var(--border)] bg-[var(--bg)] shadow-[0_28px_80px_rgba(0,0,0,0.18)]">
+          <div className="absolute bottom-0 right-0 left-0 mx-auto flex h-[calc(100vh-4.5rem)] w-full max-w-[calc(100vw-1rem)] items-end justify-end p-2 sm:bottom-5 sm:left-auto sm:right-5 sm:h-[min(86vh,900px)] sm:max-w-[min(980px,calc(100vw-1rem))] sm:p-0">
+            <div className="relative flex h-full w-full flex-col overflow-hidden border border-[var(--border)] bg-[var(--bg)] shadow-[0_28px_80px_rgba(0,0,0,0.18)] sm:rounded-2xl">
               <button
                 type="button"
                 aria-label="Close AI assistant panel"

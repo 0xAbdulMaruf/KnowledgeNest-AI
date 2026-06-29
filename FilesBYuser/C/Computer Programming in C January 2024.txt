@@ -1,0 +1,200 @@
+{
+  "exam": {
+    "title": "Computer Programming in C",
+    "paper_code": "307/1(N)",
+    "session": "January 2024",
+    "time_allowed": "2.5 Hours",
+    "full_marks": 60,
+    "groups": {
+      "Group-A": {
+        "type": "MCQ",
+        "marks": "2x10",
+        "questions": [
+          {
+            "id": "1a",
+            "question": "What will be the default value of a global integer variable?",
+            "options": ["0", "1", "garbage", "depends on compiler"]
+          },
+          {
+            "id": "1b",
+            "question": "Which of the following is not a valid C variable name?",
+            "options": [
+              "int number",
+              "float _rate",
+              "int variable_count",
+              "int $main"
+            ]
+          },
+          {
+            "id": "1c",
+            "question": "Which keyword is used to prevent any changes in the variable within a C program?",
+            "options": [
+              "immutable",
+              "mutable",
+              "const",
+              "volatile"
+            ]
+          },
+          {
+            "id": "1d",
+            "question": "What is the sizeof(char) in a 32-bit C compiler?",
+            "options": [
+              "1 bit",
+              "2 bits",
+              "1 Byte",
+              "2 Bytes"
+            ]
+          },
+          {
+            "id": "1e",
+            "question": "The function strcpy(s1,s2) –",
+            "options": [
+              "copies s1 into s2",
+              "copies s2 into s1",
+              "append s2 after s1",
+              "replace s1 with s2"
+            ]
+          },
+          {
+            "id": "1f",
+            "question": "Output of: int i=3; int k=i%-2; printf(\"%d\",k);",
+            "options": ["0", "-1", "1", "compiler error"]
+          },
+          {
+            "id": "1g",
+            "question": "Output of: int r,x=2; float y=3; r=y%x; printf(\"%d\",r);",
+            "options": ["0", "-1", "1", "compiler error"]
+          },
+          {
+            "id": "1h",
+            "question": "Output of code with duplicate declaration of y",
+            "options": [
+              "Compile time error",
+              "Hi! 34",
+              "Hi! 99",
+              "Hi! followed by a garbage value"
+            ]
+          },
+          {
+            "id": "1i",
+            "question": "Find the output: int y = 5 * 9 / 3 + 9;",
+            "options": ["3", "24", "0", "3.75"]
+          },
+          {
+            "id": "1j",
+            "question": "Find the output: 1 < 2 ? return 1 : return 2;",
+            "options": [
+              "returns 1",
+              "returns 2",
+              "Varies",
+              "Compile time error"
+            ]
+          },
+          {
+            "id": "1k",
+            "question": "Data type returned from function: int fun(){ return (double)(char)9.0; }",
+            "options": ["char", "int", "double", "none"]
+          },
+          {
+            "id": "1l",
+            "question": "x=6; y=x++; Values of x and y?",
+            "options": [
+              "x=6, y=7",
+              "x=7, y=6",
+              "x=6, y=6",
+              "x=7, y=7"
+            ]
+          },
+          {
+            "id": "1m",
+            "question": "x=6; y=++x; Values of x and y?",
+            "options": [
+              "x=6, y=7",
+              "x=7, y=6",
+              "x=7, y=7",
+              "x=6, y=6"
+            ]
+          },
+          {
+            "id": "1n",
+            "question": "x=6; y=--x; Values of x and y?",
+            "options": [
+              "x=6, y=5",
+              "x=5, y=6",
+              "x=6, y=6",
+              "x=5, y=5"
+            ]
+          },
+          {
+            "id": "1o",
+            "question": "The value of -17%-5 is",
+            "options": ["2", "-2", "3.4", "none"]
+          }
+        ]
+      },
+      "Group-B": {
+        "type": "Descriptive",
+        "answer_any_five": true,
+        "questions": [
+          {
+            "number": 2,
+            "parts": [
+              "How do comments written in C explain with examples?",
+              "Write a program to explain if-else construct in a C program.",
+              "What is modular programming? How functions help in modular programming?"
+            ]
+          },
+          {
+            "number": 3,
+            "parts": [
+              "Write a program to calculate GCD of two numbers.",
+              "Discuss different storage classes with examples."
+            ]
+          },
+          {
+            "number": 4,
+            "parts": [
+              "What is a string in C?",
+              "Discuss any four string handling library functions with example."
+            ]
+          },
+          {
+            "number": 5,
+            "parts": [
+              "Write a C program to reverse a string without using any string handling library function.",
+              "Discuss different storage classes with examples."
+            ]
+          },
+          {
+            "number": 6,
+            "parts": [
+              "Explain with example the use of address-of and value-of operator in relation to pointers in C.",
+              "Write a C program to access a one-dimensional array using pointers."
+            ]
+          },
+          {
+            "number": 7,
+            "parts": [
+              "Differentiate calloc() and malloc().",
+              "Explain the differences between recursion and iteration.",
+              "Write a complete Hello World program in C and explain used header files with their purpose."
+            ]
+          },
+          {
+            "number": 8,
+            "parts": [
+              "Write programs to generate Fibonacci series using recursion and loop."
+            ]
+          },
+          {
+            "number": 9,
+            "parts": [
+              "Illustrate the use of switch-case with an example program code.",
+              "Write a program to find all the Armstrong numbers within 100 to 1000."
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

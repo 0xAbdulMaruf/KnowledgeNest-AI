@@ -20,6 +20,15 @@ KnowledgeNest AI is a simple academic companion for organizing study material, f
 
 ## Local setup
 
+### Prerequisites
+
+```bash
+✓ Python 3.11
+✓ Node.js 18+
+✓ Ollama (optional, but recommended)
+✓ A functioning keyboard
+```
+
 ### Backend
 
 ```bash

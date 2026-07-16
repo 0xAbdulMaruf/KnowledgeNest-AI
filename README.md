@@ -8,12 +8,12 @@ An **AI-powered academic companion** that turns the chaotic mess of your syllabu
 
 ## ✨ What Makes Us Different?
 
-- 🎓 **Smart Academic Hierarchy**: Semester → Subject → Unit → Topic → Resources (Finally, some structure!)
-- 🤖 **ML Recommendations**: TF-IDF + K-Means clustering that actually understands what you're studying
-- 💬 **AI Study Assistant**: Ollama-powered, context-aware help that doesn't judge your 2 AM study sessions
-- ⚡ **Live Search**: Find that one resource you remember seeing *somewhere* without losing your mind
-- 📦 **Resource Hub**: Notes, videos, PYQs, coding problems, and more — all in one place
-- 👨‍🏫 **Faculty Portal**: Teachers can upload resources (finally, an organized way!)
+-  **Smart Academic Hierarchy**: Semester → Subject → Unit → Topic → Resources (Finally, some structure!)
+-  **ML Recommendations**: TF-IDF + K-Means clustering that actually understands what you're studying
+-  **AI Study Assistant**: Ollama-powered, context-aware help that doesn't judge your 2 AM study sessions
+-  **Live Search**: Find that one resource you remember seeing *somewhere* without losing your mind
+-  **Resource Hub**: Notes, videos, PYQs, coding problems, and more — all in one place
+-  **Faculty Portal**: Teachers can upload resources (finally, an organized way!)
 
 ---
 
@@ -31,12 +31,12 @@ Built with the best tools so you don't have to deal with technical debt as a stu
 
 ---
 
-## 🚀 Quick Start (Copy-Paste Edition)
+##  Quick Start (Copy-Paste Edition)
 
 ### Prerequisites
 
 ```bash
-✓ Python 3.10+
+✓ Python 3.11
 ✓ Node.js 18+
 ✓ Ollama (optional, but recommended — don't miss out on AI magic!)
 ✓ A functioning keyboard (preferred)
@@ -80,7 +80,7 @@ npm install
 npm run dev
 ```
 
-### 🎯 Access Points
+###  Access Points
 
 | What | Where |
 |------|-------|
@@ -120,9 +120,9 @@ KnowledgeNest-AI/
 
 ---
 
-## 🔌 API Endpoints
+##  API Endpoints
 
-### 📖 Academic Data Endpoints
+###  Academic Data Endpoints
 
 | Method | Endpoint | What It Does |
 |--------|----------|--------------|
@@ -133,7 +133,7 @@ KnowledgeNest-AI/
 | GET | `/api/topics/{id}` | See topics with resources |
 | GET | `/api/search?q=keyword` | Find anything (seriously, try it!) |
 
-### 🤖 Recommendations & AI Endpoints
+###  Recommendations & AI Endpoints
 
 | Method | Endpoint | What It Does |
 |--------|----------|--------------|
@@ -142,7 +142,7 @@ KnowledgeNest-AI/
 
 ---
 
-## 🧠 How the ML Magic Works
+##  How the ML Magic Works
 
 ```
 Your Topic
@@ -160,7 +160,7 @@ Similar Topics 🎯
 
 ---
 
-## 💾 Database
+##  Database
 
 **SQLite** for local development (zero setup!). Database file lives at `backend/academic_platform.db`.
 
@@ -182,18 +182,18 @@ python -m app.seed.seed_c_python && python -m app.seed.seed_python_unit1 && pyth
 
 | Page | What You Can Do |
 |------|-----------------|
-| **🏠 Homepage** | Search, explore semesters, jump to favorites |
-| **📚 Subjects** | Browse all subjects (filtered by semester) |
-| **📖 Subject Detail** | See all units with topic counts |
-| **🔍 Unit Page** | Browse topics with importance scores |
-| **🎓 Topic Dashboard** | Access resources + chat with AI |
-| **🔎 Search** | Live search with relevance scoring (powered by ML) |
-| **👨‍🏫 Faculty Portal** | Upload and manage resources |
-| **⚙️ Settings** | Customize your experience |
+| ** Homepage** | Search, explore semesters, jump to favorites |
+| ** Subjects** | Browse all subjects (filtered by semester) |
+| ** Subject Detail** | See all units with topic counts |
+| ** Unit Page** | Browse topics with importance scores |
+| ** Topic Dashboard** | Access resources + chat with AI |
+| ** Search** | Live search with relevance scoring (powered by ML) |
+| ** Faculty Portal** | Upload and manage resources |
+| ** Settings** | Customize your experience |
 
 ---
 
-## 🔐 Environment Variables
+##  Environment Variables
 
 Create a `.env` file in the `backend/` directory:
 
@@ -210,7 +210,7 @@ OLLAMA_MODEL=qwen2.5:3b
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Found a bug? Have an idea? We'd love your help!
 
@@ -228,7 +228,7 @@ MIT License — Use it, modify it, make it yours! 🚀
 
 ---
 
-## 💡 Pro Tips
+##  Pro Tips
 
 - **Offline learning**: Run everything locally. No internet? No problem!
 - **Customize the AI**: Change the Ollama model in `.env` for different behavior

@@ -11,6 +11,10 @@ export default defineConfig({
     },
   },
   server: {
+    host: "0.0.0.0",
+    allowedHosts: [
+      "dev.0xu0.tech"
+    ],
     proxy: {
       '/api': {
         target: 'http://localhost:8000',

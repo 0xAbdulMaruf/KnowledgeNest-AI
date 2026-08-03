@@ -10,18 +10,27 @@ from app.schemas.unit import UnitResponse
 router = APIRouter(prefix="/api/subjects", tags=["subjects"])
 
 
-@router.get("/", response_model=list[SubjectResponse])
-def list_subjects(semester_id: int | None = Query(None), db: Session = Depends(get_db)):
-    query = db.query(Subject)
+@router.get("/")
+def list_subjects(
+    semester_id: int | None = Query(None),
+    skip: int = Query(0, ge=0),
+    limit: int = Query(100, ge=1, le=500),
+    db: Session = Depends(get_db),
+):
+    base_query = db.query(Subject)
     if semester_id is not None:
-        query = query.filter(Subject.semester_id == semester_id)
-    subjects = query.order_by(Subject.name).all()
+        base_query = base_query.filter(Subject.semester_id == semester_id)
+
+    total = base_query.count()
+    subjects = base_query.order_by(Subject.name).offset(skip).limit(limit).all()
+
     result = []
     for s in subjects:
         subj = SubjectResponse.model_validate(s)
         subj.units_count = len(s.units)
         result.append(subj)
-    return result
+
+    return {"items": result, "total": total, "skip": skip, "limit": limit}
 
 
 @router.get("/{subject_id}", response_model=SubjectResponse)

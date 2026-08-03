@@ -4,8 +4,9 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.unit import Unit
 from app.models.topic import Topic
-from app.schemas.unit import UnitResponse
+from app.schemas.unit import TopicBrief, UnitResponse
 from app.schemas.topic import TopicDetailResponse
+from app.schemas.resource import ResourceResponse
 
 router = APIRouter(prefix="/api/units", tags=["units"])
 
@@ -16,7 +17,7 @@ def get_unit(unit_id: int, db: Session = Depends(get_db)):
     if not unit:
         raise HTTPException(status_code=404, detail="Unit not found")
     unit_resp = UnitResponse.model_validate(unit)
-    unit_resp.topics = [{"id": t.id, "name": t.name, "importance_score": t.importance_score} for t in unit.topics]
+    unit_resp.topics = [TopicBrief.model_validate(t) for t in unit.topics]
     unit_resp.topics_count = len(unit.topics)
     return unit_resp
 
@@ -30,20 +31,16 @@ def get_unit_topics(unit_id: int, db: Session = Depends(get_db)):
     result = []
     for t in topics:
         topic_data = TopicDetailResponse.model_validate(t)
+        if t.unit and t.unit.subject_id:
+            topic_data.subject_id = t.unit.subject_id
         grouped: dict[str, list] = {}
         for r in t.resources:
+            if r.deleted_at is not None:
+                continue
             key = r.type.value
             if key not in grouped:
                 grouped[key] = []
-            grouped[key].append({
-                "id": r.id,
-                "topic_id": r.topic_id,
-                "type": r.type.value,
-                "title": r.title,
-                "url": r.url or "",
-                "content": r.content or "",
-                "metadata_": r.metadata_ or {},
-            })
+            grouped[key].append(ResourceResponse.model_validate(r))
         topic_data.resources_by_type = grouped
         result.append(topic_data)
     return result

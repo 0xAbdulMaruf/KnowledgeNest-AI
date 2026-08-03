@@ -4,12 +4,45 @@ from sqlalchemy import func
 
 from app.database import get_db
 from app.models.pyq import PYQ
-from app.models.subject import Subject
 from app.models.unit import Unit
 from app.models.topic import Topic
 from app.schemas.pyq import PYQCreate, PYQResponse, PYQListResponse, PYQSessionResponse
 
 router = APIRouter(prefix="/api/pyqs", tags=["pyqs"])
+
+
+def _build_unit_topic_maps(pyqs: list[PYQ], db: Session) -> tuple[dict[int, str], dict[int, str]]:
+    """Pre-fetch all referenced unit and topic names in a single query each."""
+    unit_ids = {pyq.unit_id for pyq in pyqs if pyq.unit_id}
+    topic_ids = {pyq.topic_id for pyq in pyqs if pyq.topic_id}
+
+    unit_map: dict[int, str] = {}
+    topic_map: dict[int, str] = {}
+
+    if unit_ids:
+        units = db.query(Unit).filter(Unit.id.in_(unit_ids)).all()
+        unit_map = {u.id: u.name for u in units}
+    if topic_ids:
+        topics = db.query(Topic).filter(Topic.id.in_(topic_ids)).all()
+        topic_map = {t.id: t.name for t in topics}
+
+    return unit_map, topic_map
+
+
+def _build_pyq_response(pyq: PYQ, unit_map: dict[int, str], topic_map: dict[int, str]) -> PYQListResponse:
+    return PYQListResponse(
+        id=pyq.id,
+        session=pyq.session,
+        year=pyq.year,
+        paper_code=pyq.paper_code or "",
+        paper_title=pyq.paper_title or "",
+        question_id=pyq.question_id or "",
+        question_text=pyq.question_text,
+        question_type=pyq.question_type,
+        marks=pyq.marks or "",
+        unit_name=unit_map.get(pyq.unit_id) if pyq.unit_id else None,
+        topic_name=topic_map.get(pyq.topic_id) if pyq.topic_id else None,
+    )
 
 
 @router.get("/", response_model=list[PYQListResponse])
@@ -39,33 +72,9 @@ def list_pyqs(
         query = query.filter(PYQ.question_type == question_type)
     
     pyqs = query.order_by(PYQ.year.desc(), PYQ.session.desc()).limit(limit).all()
-    
-    result = []
-    for pyq in pyqs:
-        unit_name = None
-        topic_name = None
-        if pyq.unit_id:
-            unit = db.query(Unit).filter(Unit.id == pyq.unit_id).first()
-            unit_name = unit.name if unit else None
-        if pyq.topic_id:
-            topic = db.query(Topic).filter(Topic.id == pyq.topic_id).first()
-            topic_name = topic.name if topic else None
-        
-        result.append(PYQListResponse(
-            id=pyq.id,
-            session=pyq.session,
-            year=pyq.year,
-            paper_code=pyq.paper_code or "",
-            paper_title=pyq.paper_title or "",
-            question_id=pyq.question_id or "",
-            question_text=pyq.question_text,
-            question_type=pyq.question_type,
-            marks=pyq.marks or "",
-            unit_name=unit_name,
-            topic_name=topic_name
-        ))
-    
-    return result
+
+    unit_map, topic_map = _build_unit_topic_maps(pyqs, db)
+    return [_build_pyq_response(pyq, unit_map, topic_map) for pyq in pyqs]
 
 
 @router.get("/sessions", response_model=list[PYQSessionResponse])
@@ -145,30 +154,6 @@ def search_pyqs(
         query = query.filter(PYQ.subject_id == subject_id)
     
     pyqs = query.limit(limit).all()
-    
-    result = []
-    for pyq in pyqs:
-        unit_name = None
-        topic_name = None
-        if pyq.unit_id:
-            unit = db.query(Unit).filter(Unit.id == pyq.unit_id).first()
-            unit_name = unit.name if unit else None
-        if pyq.topic_id:
-            topic = db.query(Topic).filter(Topic.id == pyq.topic_id).first()
-            topic_name = topic.name if topic else None
-        
-        result.append(PYQListResponse(
-            id=pyq.id,
-            session=pyq.session,
-            year=pyq.year,
-            paper_code=pyq.paper_code or "",
-            paper_title=pyq.paper_title or "",
-            question_id=pyq.question_id or "",
-            question_text=pyq.question_text,
-            question_type=pyq.question_type,
-            marks=pyq.marks or "",
-            unit_name=unit_name,
-            topic_name=topic_name
-        ))
-    
-    return result
+
+    unit_map, topic_map = _build_unit_topic_maps(pyqs, db)
+    return [_build_pyq_response(pyq, unit_map, topic_map) for pyq in pyqs]

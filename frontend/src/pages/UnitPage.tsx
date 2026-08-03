@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import { ChevronRight, FileText, ArrowRight, BookOpen } from 'lucide-react'
 import { useUnit, useUnitTopics } from '@/hooks/use-api'
+import type { Topic } from '@/services/api'
 
 export default function UnitPage() {
   const { id } = useParams<{ id: string }>()
@@ -80,7 +81,7 @@ export default function UnitPage() {
 
         {topics && topics.length > 0 ? (
           <div className="mt-8 grid grid-cols-1 gap-0 sm:grid-cols-2">
-            {topics.map((topic: any, index: number) => (
+            {topics.map((topic: Topic, index: number) => (
               <Link
                 key={topic.id}
                 to={`/topics/${topic.id}`}

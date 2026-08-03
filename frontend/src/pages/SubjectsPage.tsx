@@ -1,12 +1,43 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { BookOpen, ArrowRight, Filter } from 'lucide-react'
-import { useSubjects, useSemesters } from '@/hooks/use-api'
+import { BookOpen, ArrowRight, Filter, Loader2 } from 'lucide-react'
+import { useInfiniteSubjects, useSemesters } from '@/hooks/use-api'
+import type { Subject } from '@/services/api'
 
 export default function SubjectsPage() {
   const [selectedSemester, setSelectedSemester] = useState<number | undefined>()
   const { data: semesters } = useSemesters()
-  const { data: subjects, isLoading } = useSubjects(selectedSemester)
+  const {
+    data,
+    isLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+  } = useInfiniteSubjects(selectedSemester)
+
+  const subjects = data?.pages.flatMap((page) => page.items) ?? []
+  const totalCount = data?.pages[0]?.total ?? 0
+
+  // Intersection Observer for infinite scroll
+  const loadMoreRef = useRef<HTMLDivElement>(null)
+
+  const handleObserver = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      const [entry] = entries
+      if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
+        fetchNextPage()
+      }
+    },
+    [hasNextPage, isFetchingNextPage, fetchNextPage]
+  )
+
+  useEffect(() => {
+    const node = loadMoreRef.current
+    if (!node) return
+    const observer = new IntersectionObserver(handleObserver, { rootMargin: '200px' })
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [handleObserver])
 
   const getSemesterNumber = (semesterId: number) => {
     const sem = semesters?.find((s) => s.id === semesterId)
@@ -55,7 +86,7 @@ export default function SubjectsPage() {
               borderRadius: 'var(--radius)',
               border: `1px solid ${!selectedSemester ? 'var(--accent)' : 'var(--border)'}`,
               background: !selectedSemester ? 'var(--accent)' : 'transparent',
-              color: !selectedSemester ? '#fff' : 'var(--muted)',
+              color: !selectedSemester ? 'var(--bg)' : 'var(--muted)',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
             }}
@@ -73,7 +104,7 @@ export default function SubjectsPage() {
                 borderRadius: 'var(--radius)',
                 border: `1px solid ${selectedSemester === semester.id ? 'var(--accent)' : 'var(--border)'}`,
                 background: selectedSemester === semester.id ? 'var(--accent)' : 'transparent',
-                color: selectedSemester === semester.id ? '#fff' : 'var(--muted)',
+                color: selectedSemester === semester.id ? 'var(--bg)' : 'var(--muted)',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
               }}
@@ -97,7 +128,7 @@ export default function SubjectsPage() {
           </div>
         ) : subjects && subjects.length > 0 ? (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
-            {subjects.map((subject: any, index: number) => (
+            {subjects.map((subject: Subject, index: number) => (
               <Link
                 key={subject.id}
                 to={`/subjects/${subject.id}`}
@@ -153,6 +184,23 @@ export default function SubjectsPage() {
             <p style={{ color: 'var(--muted)', fontSize: '14px', marginTop: '8px' }}>Try selecting a different semester</p>
           </div>
         )}
+
+        {/* Infinite scroll sentinel + loading indicator */}
+        <div ref={loadMoreRef} style={{ padding: '32px 0', textAlign: 'center' }}>
+          {isFetchingNextPage && (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+              <Loader2 className="h-4 w-4 animate-spin text-[var(--accent)]" />
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--muted)' }}>
+                Loading more...
+              </span>
+            </div>
+          )}
+          {!hasNextPage && subjects.length > 0 && (
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--muted)' }}>
+              {totalCount} subject{totalCount !== 1 ? 's' : ''} total
+            </p>
+          )}
+        </div>
       </section>
     </div>
   )

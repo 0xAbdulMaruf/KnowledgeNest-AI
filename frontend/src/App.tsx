@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import ErrorBoundary from '@/components/ErrorBoundary'
 import Layout from '@/components/layout/Layout'
 import HomePage from '@/pages/HomePage'
 import SubjectsPage from '@/pages/SubjectsPage'
@@ -11,6 +12,7 @@ import SettingsPage from '@/pages/SettingsPage'
 
 export default function App() {
   return (
+    <ErrorBoundary>
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
@@ -23,5 +25,6 @@ export default function App() {
         <Route path="settings" element={<SettingsPage />} />
       </Route>
     </Routes>
+    </ErrorBoundary>
   )
 }

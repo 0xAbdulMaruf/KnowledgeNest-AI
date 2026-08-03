@@ -1,10 +1,20 @@
 from contextlib import asynccontextmanager
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+# Load configuration before importing modules that initialize the database or services.
+# Support both the repository-level .env and backend/.env regardless of launch directory.
+backend_dir = Path(__file__).resolve().parents[1]
+project_env = backend_dir.parent / ".env"
+load_dotenv(project_env)
+load_dotenv(backend_dir / ".env", override=True)
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import engine, Base, ensure_resource_soft_delete_columns
-from app.models import Semester, Subject, Unit, Topic, Resource  # noqa: F401
+from app.models import Semester, Subject, Unit, Topic, Resource, PYQ  # noqa: F401
 from app.api import semesters, subjects, units, topics, search, recommendations, faculty, ai
 
 

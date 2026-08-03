@@ -21,7 +21,7 @@ export default function SubjectGrid({ semesterId }: SubjectGridProps) {
 
   if (error) {
     return (
-      <div className="rounded-lg border border-[#fecaca] bg-[#fef2f2] p-4 text-sm text-[#ef4444]">
+      <div className="rounded-lg border border-red-500/30 bg-red-500/5 p-4 text-sm text-red-500">
         Failed to load subjects. Please try again.
       </div>
     )
@@ -29,8 +29,8 @@ export default function SubjectGrid({ semesterId }: SubjectGridProps) {
 
   if (!subjects || subjects.length === 0) {
     return (
-      <div className="rounded-xl border border-[#e5e7eb] bg-white p-8 text-center">
-        <p className="text-sm text-[#9ca3af]">No subjects found.</p>
+      <div className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-8 text-center">
+        <p className="text-sm text-[var(--muted)]">No subjects found.</p>
       </div>
     )
   }

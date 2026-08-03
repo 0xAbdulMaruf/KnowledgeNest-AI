@@ -4,5 +4,6 @@ from app.models.unit import Unit
 from app.models.topic import Topic
 from app.models.resource import Resource, ResourceType
 from app.models.faculty_activity import FacultyActivity
+from app.models.pyq import PYQ
 
-__all__ = ["Semester", "Subject", "Unit", "Topic", "Resource", "ResourceType", "FacultyActivity"]
+__all__ = ["Semester", "Subject", "Unit", "Topic", "Resource", "ResourceType", "FacultyActivity", "PYQ"]

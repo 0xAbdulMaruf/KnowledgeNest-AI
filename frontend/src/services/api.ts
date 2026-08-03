@@ -1,8 +1,15 @@
 /// <reference types="vite/client" />
 import axios from 'axios'
 
+const configuredApiUrl = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '')
+const apiBaseUrl = configuredApiUrl
+  ? configuredApiUrl.endsWith('/api')
+    ? configuredApiUrl
+    : `${configuredApiUrl}/api`
+  : '/api'
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api',
+  baseURL: apiBaseUrl,
   timeout: 10000,
 })
 
@@ -65,6 +72,7 @@ export interface Topic {
   id: number
   name: string
   unit_id: number
+  subject_id?: number
   unit_name?: string
   subject_name?: string
   description?: string
@@ -134,13 +142,6 @@ export interface RecommendationResponse {
   total: number
 }
 
-export interface AIResponse {
-  answer: string
-  topic_name: string
-  mode: string
-  provider: string
-}
-
 export type AIProvider = 'local' | 'openai' | 'anthropic' | 'mimo'
 
 export interface AIProviderConfig {
@@ -148,6 +149,21 @@ export interface AIProviderConfig {
   baseUrl?: string
   apiKey?: string
   model?: string
+  developerToken?: string
+}
+
+export interface AIConfigStatus {
+  provider: AIProvider
+  model: string
+  api_key_configured: boolean
+  developer_options_enabled: boolean
+}
+
+export const AI_DEVELOPER_CONFIG_KEY = 'kn-ai-developer-config'
+
+export const unlockAIDeveloper = async (password: string): Promise<{ access_token: string }> => {
+  const { data } = await api.post('/ai/developer/unlock', { password })
+  return data
 }
 
 export interface CreateResourcePayload {
@@ -187,8 +203,21 @@ export const getSemesterSubjects = async (id: number): Promise<Subject[]> => {
   return data
 }
 
-export const getSubjects = async (semesterId?: number): Promise<Subject[]> => {
-  const { data } = await api.get('/subjects/', { params: semesterId ? { semester_id: semesterId } : {} })
+export interface PaginatedResponse<T> {
+  items: T[]
+  total: number
+  skip: number
+  limit: number
+}
+
+export const getSubjects = async (semesterId?: number, skip = 0, limit = 20): Promise<PaginatedResponse<Subject>> => {
+  const params: Record<string, string | number> = { skip, limit }
+  if (semesterId) params.semester_id = semesterId
+  const { data } = await api.get('/subjects/', { params })
+  // Backward compat: deployed backend may still return a flat array
+  if (Array.isArray(data)) {
+    return { items: data, total: data.length, skip, limit }
+  }
   return data
 }
 
@@ -267,42 +296,87 @@ export const restoreResource = async (resourceId: number): Promise<Resource> => 
   return data
 }
 
-export const chatWithAI = async (topicId: number | null | undefined, question: string, mode?: string): Promise<AIResponse> => {
-  const { data } = await api.post(
-    '/ai/chat',
-    {
-      topic_id: topicId ?? null,
-      question,
-      mode: mode || 'answer_question',
-      provider: 'local',
-    },
-    { timeout: 120000 }
-  )
+export const getAIConfig = async (): Promise<AIConfigStatus> => {
+  const { data } = await api.get('/ai/config')
   return data
 }
 
-export const chatWithAIProvider = async (
+export interface AIStreamCallbacks {
+  onChunk: (chunk: string) => void
+  onDone?: () => void
+}
+
+export const streamChatWithAIProvider = async (
   topicId: number | null | undefined,
   question: string,
-  providerConfig: AIProviderConfig,
-  mode?: string,
-  history: { role: 'user' | 'ai'; content: string }[] = []
-): Promise<AIResponse> => {
-  const { data } = await api.post(
-    '/ai/chat',
-    {
+  providerConfig: AIProviderConfig | undefined,
+  mode: string = 'answer_question',
+  scope: string = 'topic',
+  history: { role: 'user' | 'ai'; content: string }[] = [],
+  callbacks: AIStreamCallbacks,
+  signal?: AbortSignal,
+): Promise<void> => {
+  const response = await fetch(`${apiBaseUrl}/ai/chat/stream`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    signal,
+    body: JSON.stringify({
       topic_id: topicId ?? null,
       question,
-      mode: mode || 'answer_question',
+      mode,
+      scope,
       history: history.map((message) => ({ role: message.role === 'ai' ? 'assistant' : 'user', content: message.content })),
-      provider: providerConfig.provider,
-      base_url: providerConfig.baseUrl,
-      api_key: providerConfig.apiKey,
-      model: providerConfig.model,
-    },
-    { timeout: 120000 }
-  )
-  return data
+      ...(providerConfig ? {
+        developer_token: providerConfig.developerToken,
+        provider: providerConfig.provider,
+        base_url: providerConfig.baseUrl,
+        api_key: providerConfig.apiKey,
+        model: providerConfig.model,
+      } : {}),
+    }),
+  })
+
+  if (!response.ok) {
+    let detail = 'AI provider request failed.'
+    try {
+      const payload = await response.json()
+      if (typeof payload.detail === 'string') detail = payload.detail
+    } catch {
+      // Keep the safe fallback message.
+    }
+    throw new Error(detail)
+  }
+
+  if (!response.body) throw new Error('Streaming is not supported by this browser.')
+  const reader = response.body.getReader()
+  const decoder = new TextDecoder()
+  let buffer = ''
+
+  const processEvent = (event: string) => {
+    const line = event.split('\n').find((entry) => entry.startsWith('data: '))
+    if (!line) return
+    const payload = JSON.parse(line.slice(6)) as { chunk?: string; done?: boolean; error?: string }
+    if (payload.error) throw new Error(payload.error)
+    if (payload.chunk) callbacks.onChunk(payload.chunk)
+    if (payload.done) callbacks.onDone?.()
+  }
+
+  try {
+    while (true) {
+      const { value, done } = await reader.read()
+      if (done) {
+        buffer += decoder.decode()
+        break
+      }
+      buffer += decoder.decode(value, { stream: true })
+      const events = buffer.split('\n\n')
+      buffer = events.pop() || ''
+      for (const event of events) processEvent(event)
+    }
+    if (buffer.trim()) processEvent(buffer)
+  } finally {
+    reader.releaseLock()
+  }
 }
 
 export const testAIConnection = async (providerConfig: AIProviderConfig): Promise<{ ok: boolean; provider: string; message: string }> => {
@@ -312,10 +386,13 @@ export const testAIConnection = async (providerConfig: AIProviderConfig): Promis
       topic_id: null,
       question: 'Ping',
       mode: 'answer_question',
-      provider: providerConfig.provider,
-      base_url: providerConfig.baseUrl,
-      api_key: providerConfig.apiKey,
-      model: providerConfig.model,
+      ...(providerConfig ? {
+        developer_token: providerConfig.developerToken,
+        provider: providerConfig.provider,
+        base_url: providerConfig.baseUrl,
+        api_key: providerConfig.apiKey,
+        model: providerConfig.model,
+      } : {}),
       history: [],
     },
     { timeout: 45000 }

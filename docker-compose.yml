@@ -25,6 +25,13 @@ services:
       DATABASE_URL: ${DATABASE_URL:-postgresql://academic_user:academic_pass@postgres:5432/academic_db}
       OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://ollama:11434}
       OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen2.5:3b}
+      AI_PROVIDER: ${AI_PROVIDER:-local}
+      AI_BASE_URL: ${AI_BASE_URL:-}
+      AI_API_KEY: ${AI_API_KEY:-}
+      AI_MODEL: ${AI_MODEL:-}
+      AI_DEVELOPER_PASSWORD: ${AI_DEVELOPER_PASSWORD:-}
+      AI_DEVELOPER_TOKEN: ${AI_DEVELOPER_TOKEN:-}
+      AI_DEVELOPER_TOKEN_TTL_MINUTES: ${AI_DEVELOPER_TOKEN_TTL_MINUTES:-60}
     depends_on:
       postgres:
         condition: service_healthy

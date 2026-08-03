@@ -16,6 +16,9 @@ def get_topic(topic_id: int, db: Session = Depends(get_db)):
     if not topic:
         raise HTTPException(status_code=404, detail="Topic not found")
     topic_data = TopicDetailResponse.model_validate(topic)
+    # Inject subject_id so the frontend can build correct breadcrumb links
+    if topic.unit and topic.unit.subject_id:
+        topic_data.subject_id = topic.unit.subject_id
     grouped: dict[str, list] = {}
     for r in topic.resources:
         if r.deleted_at is not None:
@@ -23,15 +26,7 @@ def get_topic(topic_id: int, db: Session = Depends(get_db)):
         key = r.type.value
         if key not in grouped:
             grouped[key] = []
-        grouped[key].append({
-            "id": r.id,
-            "topic_id": r.topic_id,
-            "type": r.type.value,
-            "title": r.title,
-            "url": r.url or "",
-            "content": r.content or "",
-            "metadata_": r.metadata_ or {},
-        })
+        grouped[key].append(ResourceResponse.model_validate(r))
     topic_data.resources_by_type = grouped
     return topic_data
 

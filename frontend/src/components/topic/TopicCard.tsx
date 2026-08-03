@@ -14,7 +14,7 @@ export default function TopicCard({ topic }: TopicCardProps) {
       <Card className="group h-full">
         <CardHeader>
           <div className="flex items-start justify-between">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f3f4f6] text-[#6b7280] group-hover:bg-[#3b82f6]/10 group-hover:text-[#3b82f6] transition-colors">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--surface)] text-[var(--muted)] group-hover:bg-[var(--accent)]/10 group-hover:text-[var(--accent)] transition-colors">
               <FileText className="h-[18px] w-[18px]" />
             </div>
             {topic.importance_score && (
@@ -24,13 +24,13 @@ export default function TopicCard({ topic }: TopicCardProps) {
               </div>
             )}
           </div>
-          <CardTitle className="mt-3 line-clamp-2 text-sm group-hover:text-[#3b82f6] transition-colors">
+          <CardTitle className="mt-3 line-clamp-2 text-sm group-hover:text-[var(--accent)] transition-colors">
             {topic.name}
           </CardTitle>
         </CardHeader>
         <CardContent>
           {topic.unit_name && (
-            <p className="mb-3 text-xs text-[#9ca3af]">
+            <p className="mb-3 text-xs text-[var(--muted)]">
               {topic.unit_name}
             </p>
           )}

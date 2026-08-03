@@ -1,10 +1,12 @@
+import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { ChevronRight, BookOpen, FileText, Video, HelpCircle, Code, ExternalLink } from 'lucide-react'
 import { useTopic, useTopicResources, useRecommendations } from '@/hooks/use-api'
 import RecommendedTopics from '@/components/recommendation/RecommendedTopics'
 import ResourceTypeIcon from '@/components/resource/ResourceTypeIcon'
+import type { Resource, ResourceType } from '@/services/api'
 
-const resourceTabs = [
+const resourceTabs: { value: ResourceType | 'all'; label: string; icon: typeof BookOpen }[] = [
   { value: 'all', label: 'All', icon: BookOpen },
   { value: 'college_notes', label: 'Notes', icon: FileText },
   { value: 'external_notes', label: 'External', icon: ExternalLink },
@@ -18,6 +20,7 @@ export default function TopicPage() {
   const topicId = Number(id)
   const { data: topic, isLoading } = useTopic(topicId)
   const { data: resources } = useTopicResources(topicId)
+  const [activeTab, setActiveTab] = useState<ResourceType | 'all'>('all')
 
   if (isLoading) {
     return (
@@ -41,15 +44,20 @@ export default function TopicPage() {
   }
 
   // Group resources by type
-  const resourcesByType: Record<string, any[]> = {}
+  const resourcesByType: Record<string, Resource[]> = {}
   if (resources) {
-    resources.forEach((r: any) => {
+    resources.forEach((r: Resource) => {
       if (!resourcesByType[r.type]) {
         resourcesByType[r.type] = []
       }
       resourcesByType[r.type].push(r)
     })
   }
+
+  // Filter resources by active tab
+  const filteredResources = activeTab === 'all'
+    ? (resources || [])
+    : (resourcesByType[activeTab] || [])
 
   return (
     <div>
@@ -61,7 +69,7 @@ export default function TopicPage() {
         {topic.subject_name && (
           <>
             <ChevronRight className="h-3 w-3 text-[var(--muted)]" />
-            <Link to={`/subjects/1`} className="text-[var(--muted)] transition-colors hover:text-[var(--fg)]">
+            <Link to={`/subjects/${topic.subject_id}`} className="text-[var(--muted)] transition-colors hover:text-[var(--fg)]">
               {topic.subject_name}
             </Link>
           </>
@@ -130,7 +138,12 @@ export default function TopicPage() {
                 return (
                   <button
                     key={tab.value}
-                    className="flex items-center gap-2 border-r border-[var(--border)] px-4 py-3 text-sm text-[var(--muted)] transition-all hover:bg-[var(--surface)] hover:text-[var(--fg)]"
+                    onClick={() => setActiveTab(tab.value)}
+                    className={`flex items-center gap-2 border-r border-[var(--border)] px-4 py-3 text-sm transition-all hover:bg-[var(--surface)] hover:text-[var(--fg)] ${
+                      activeTab === tab.value
+                        ? 'bg-[var(--surface)] text-[var(--fg)]'
+                        : 'text-[var(--muted)]'
+                    }`}
                   >
                     <Icon className="h-4 w-4" />
                     <span>{tab.label}</span>
@@ -145,9 +158,9 @@ export default function TopicPage() {
             </div>
 
             <div className="p-6">
-              {resources && resources.length > 0 ? (
+              {filteredResources.length > 0 ? (
                 <div className="space-y-0">
-                  {resources.map((resource: any) => (
+                  {filteredResources.map((resource: Resource) => (
                     <div
                       key={resource.id}
                       className="flex items-start gap-4 border-b border-[var(--border)] p-4 last:border-b-0 transition-all hover:bg-[var(--surface)]"

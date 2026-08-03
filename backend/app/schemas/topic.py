@@ -5,6 +5,7 @@ from app.schemas.resource import ResourceResponse
 class TopicBase(BaseModel):
     name: str
     unit_id: int
+    subject_id: int | None = None
     description: str = ""
     tags: list[str] = []
     importance_score: float = 0.0

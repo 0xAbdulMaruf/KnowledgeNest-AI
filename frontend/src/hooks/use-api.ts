@@ -1,6 +1,8 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useQuery, useInfiniteQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import * as api from '@/services/api'
 import type { AIProviderConfig, ResourceType, CreateResourcePayload, FacultyUnlockPayload, UpdateResourcePayload } from '@/services/api'
+
+const PAGE_SIZE = 20
 
 export function useSemesters() {
   return useQuery({
@@ -31,7 +33,23 @@ export function useSemesterSubjects(id: number) {
 export function useSubjects(semesterId?: number) {
   return useQuery({
     queryKey: ['subjects', semesterId],
-    queryFn: () => api.getSubjects(semesterId),
+    queryFn: async () => {
+      const result = await api.getSubjects(semesterId, 0, 500)
+      return result.items ?? []
+    },
+    staleTime: 5 * 60 * 1000,
+  })
+}
+
+export function useInfiniteSubjects(semesterId?: number) {
+  return useInfiniteQuery({
+    queryKey: ['subjects', 'infinite', semesterId],
+    queryFn: ({ pageParam = 0 }) => api.getSubjects(semesterId, pageParam, PAGE_SIZE),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => {
+      const nextSkip = lastPage.skip + lastPage.limit
+      return nextSkip < lastPage.total ? nextSkip : undefined
+    },
     staleTime: 5 * 60 * 1000,
   })
 }
@@ -178,21 +196,35 @@ export function useRestoreResource() {
   })
 }
 
-export function useChatWithAI() {
+export function useAIConfig() {
+  return useQuery({
+    queryKey: ['ai', 'config'],
+    queryFn: api.getAIConfig,
+    staleTime: 60 * 1000,
+  })
+}
+
+export function useStreamChatWithAI() {
   return useMutation({
     mutationFn: ({
       topicId,
       question,
       providerConfig,
       mode,
+      scope,
       history,
+      callbacks,
+      signal,
     }: {
       topicId?: number | null
       question: string
-      providerConfig: AIProviderConfig
+      providerConfig?: AIProviderConfig
       mode?: string
+      scope?: string
       history?: { role: 'user' | 'ai'; content: string }[]
-    }) => api.chatWithAIProvider(topicId, question, providerConfig, mode, history || []),
+      callbacks: api.AIStreamCallbacks
+      signal?: AbortSignal
+    }) => api.streamChatWithAIProvider(topicId, question, providerConfig, mode, scope || 'topic', history || [], callbacks, signal),
   })
 }
 

@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams, useNavigate } from 'react-router-dom'
 import { Search, BookOpen, FileText, Layers, ArrowRight, TrendingUp } from 'lucide-react'
 import { useSearch } from '@/hooks/use-api'
+import type { Subject, Topic, Unit } from '@/services/api'
 
 export default function SearchPage() {
   const [searchParams] = useSearchParams()
+  const navigate = useNavigate()
   const query = searchParams.get('q') || ''
   const [inputValue, setInputValue] = useState(query)
 
@@ -17,7 +19,7 @@ export default function SearchPage() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     if (inputValue.trim()) {
-      window.location.href = `/search?q=${encodeURIComponent(inputValue.trim())}`
+      navigate(`/search?q=${encodeURIComponent(inputValue.trim())}`)
     }
   }
 
@@ -82,7 +84,7 @@ export default function SearchPage() {
                     Subjects
                   </h3>
                   <div className="mt-4 grid grid-cols-1 gap-0 sm:grid-cols-2">
-                    {data.subjects.map((subject: any) => (
+                    {data.subjects.map((subject: Subject & { relevance: number }) => (
                       <Link
                         key={subject.id}
                         to={`/subjects/${subject.id}`}
@@ -114,7 +116,7 @@ export default function SearchPage() {
                     Topics
                   </h3>
                   <div className="mt-4 grid grid-cols-1 gap-0 sm:grid-cols-2">
-                    {data.topics.map((topic: any) => (
+                    {data.topics.map((topic: Topic & { relevance: number; subject_name?: string }) => (
                       <Link
                         key={topic.id}
                         to={`/topics/${topic.id}`}
@@ -159,7 +161,7 @@ export default function SearchPage() {
                     Units
                   </h3>
                   <div className="mt-4 grid grid-cols-1 gap-0 sm:grid-cols-2">
-                    {data.units.map((unit: any) => (
+                    {data.units.map((unit: Unit & { relevance: number; subject_name?: string }) => (
                       <Link
                         key={unit.id}
                         to={`/units/${unit.id}`}

@@ -3,7 +3,7 @@ import hashlib
 import hmac
 import json
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from fastapi import APIRouter, Depends, Header, HTTPException, Query, status
 from sqlalchemy.orm import Session
@@ -22,10 +22,14 @@ from app.schemas.resource import (
 
 router = APIRouter(prefix="/api/faculty", tags=["faculty"])
 FACULTY_SESSION_SECRET = os.getenv("FACULTY_SESSION_SECRET", "change-me")
+FACULTY_TOKEN_TTL_HOURS = int(os.getenv("FACULTY_TOKEN_TTL_HOURS", "12"))
 
 
 def _sign_teacher_name(teacher_name: str) -> str:
-    payload = json.dumps({"teacher_name": teacher_name.strip()}, separators=(",", ":")).encode("utf-8")
+    expires_at = (datetime.now(timezone.utc) + timedelta(hours=FACULTY_TOKEN_TTL_HOURS)).isoformat()
+    payload = json.dumps(
+        {"teacher_name": teacher_name.strip(), "exp": expires_at}, separators=(",", ":")
+    ).encode("utf-8")
     signature = hmac.new(FACULTY_SESSION_SECRET.encode("utf-8"), payload, hashlib.sha256).digest()
     return base64.urlsafe_b64encode(payload + b"." + signature).decode("utf-8")
 
@@ -43,7 +47,14 @@ def _verify_teacher_token(token: str | None) -> str:
         teacher_name = str(payload.get("teacher_name", "")).strip()
         if not teacher_name:
             raise ValueError
+        exp_str = str(payload.get("exp", ""))
+        if exp_str:
+            exp_time = datetime.fromisoformat(exp_str)
+            if datetime.now(timezone.utc) > exp_time:
+                raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Faculty session expired")
         return teacher_name
+    except HTTPException:
+        raise
     except Exception as exc:  # noqa: BLE001
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid faculty session") from exc
 
@@ -61,7 +72,7 @@ def _resource_to_response(resource: Resource) -> ResourceResponse:
 @router.post("/unlock", response_model=FacultyUnlockResponse)
 def unlock_faculty(payload: FacultyUnlockRequest):
     expected_password = os.getenv("FACULTY_TEACHER_PASSWORD", "")
-    if not expected_password or payload.password != expected_password:
+    if not expected_password or not hmac.compare_digest(payload.password.encode("utf-8"), expected_password.encode("utf-8")):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid teacher password")
     teacher_name = payload.teacher_name.strip()
     if not teacher_name:
@@ -92,7 +103,8 @@ def list_resources(
         query = query.filter(Resource.deleted_at.is_(None))
     if topic_id is not None:
         query = query.filter(Resource.topic_id == topic_id)
-    return query.order_by(Resource.id.desc()).all()
+    resources = query.order_by(Resource.id.desc()).all()
+    return [_resource_to_response(r) for r in resources]
 
 
 @router.get("/activities", response_model=list[FacultyActivityResponse])
@@ -116,7 +128,7 @@ def create_resource(resource: ResourceCreate, db: Session = Depends(get_db), tea
     log_activity(db, teacher_name=teacher_name, action="create", resource_id=db_resource.id)
     db.commit()
     db.refresh(db_resource)
-    return db_resource
+    return _resource_to_response(db_resource)
 
 
 @router.put("/resources/{resource_id}", response_model=ResourceResponse)
@@ -141,7 +153,7 @@ def update_resource(resource_id: int, resource: ResourceUpdate, db: Session = De
     log_activity(db, teacher_name=teacher_name, action="update", resource_id=db_resource.id)
     db.commit()
     db.refresh(db_resource)
-    return db_resource
+    return _resource_to_response(db_resource)
 
 
 @router.delete("/resources/{resource_id}", response_model=ResourceResponse)
@@ -155,7 +167,7 @@ def delete_resource(resource_id: int, db: Session = Depends(get_db), teacher_nam
     log_activity(db, teacher_name=teacher_name, action="delete", resource_id=resource.id)
     db.commit()
     db.refresh(resource)
-    return resource
+    return _resource_to_response(resource)
 
 
 @router.post("/resources/{resource_id}/restore", response_model=ResourceResponse)
@@ -171,4 +183,4 @@ def restore_resource(resource_id: int, db: Session = Depends(get_db), teacher_na
     log_activity(db, teacher_name=teacher_name, action="restore", resource_id=resource.id)
     db.commit()
     db.refresh(resource)
-    return resource
+    return _resource_to_response(resource)

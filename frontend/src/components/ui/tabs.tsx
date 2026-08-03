@@ -41,7 +41,7 @@ interface TabsListProps {
 
 export function TabsList({ children, className }: TabsListProps) {
   return (
-    <div className={cn('inline-flex items-center gap-1 border-b border-[#e5e7eb]', className)}>
+    <div className={cn('inline-flex items-center gap-1 border-b border-[var(--border)]', className)}>
       {children}
     </div>
   )
@@ -62,8 +62,8 @@ export function TabsTrigger({ value, children, className }: TabsTriggerProps) {
       className={cn(
         'inline-flex items-center justify-center whitespace-nowrap px-4 py-2.5 text-sm font-medium transition-all duration-150 border-b-2 -mb-px',
         isActive
-          ? 'border-[#3b82f6] text-[#3b82f6]'
-          : 'border-transparent text-[#6b7280] hover:text-[#1a1a1a] hover:border-[#e5e7eb]',
+          ? 'border-[var(--accent)] text-[var(--accent)]'
+          : 'border-transparent text-[var(--muted)] hover:text-[var(--fg)] hover:border-[var(--border)]',
         className
       )}
       onClick={() => ctx.onValueChange(value)}

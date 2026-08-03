@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import { ChevronRight, BookOpen, ArrowRight, Layers } from 'lucide-react'
 import { useSubject, useSubjectUnits } from '@/hooks/use-api'
+import type { Unit } from '@/services/api'
 
 export default function SubjectDetailPage() {
   const { id } = useParams<{ id: string }>()
@@ -114,7 +115,7 @@ export default function SubjectDetailPage() {
               gap: '20px',
             }}
           >
-            {units.map((unit: any, index: number) => (
+            {units.map((unit: Unit, index: number) => (
               <Link
                 key={unit.id}
                 to={`/units/${unit.id}`}
